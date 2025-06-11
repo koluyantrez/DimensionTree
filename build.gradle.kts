@@ -27,7 +27,7 @@ tasks.withType<JavaCompile> {
 
 application {
     mainModule.set("be.ac.umons.razanajao.sddproject")
-    mainClass.set("be.ac.umons.razanajao.sddproject.HelloApplication")
+    mainClass.set("be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching")
 }
 
 javafx {
