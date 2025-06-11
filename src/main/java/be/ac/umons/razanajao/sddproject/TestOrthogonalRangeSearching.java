@@ -73,13 +73,18 @@ public class TestOrthogonalRangeSearching extends Application {
         importFile.setLayoutX(50);
         importFile.setLayoutY(150);
 
+        data.getStyleClass().add("choice-box");
+        data.setLayoutX(300);
+        data.setLayoutY(150);
+
 
 
         root.getChildren().addAll(
                 inputUser,
                 notifGreen,
                 notifRed,
-                importFile
+                importFile,
+                data
         );
 
         Scene scene = new Scene(root, 1500, 900);

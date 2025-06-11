@@ -54,3 +54,36 @@
     -fx-translate-y: 0.2em;
 }
 
+.choice-box {
+    -fx-background-color: navy;
+    -fx-text-fill: aliceblue;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10 5 10;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.5), 4, 0, 2, 2);
+    -fx-border-color: aliceblue;
+    -fx-border-radius: 5;
+    -fx-border-width: 1px;
+}
+
+/* Pour l'affichage du bouton flèche */
+.choice-box .arrow {
+    -fx-background-color: aliceblue;
+}
+
+/* Lorsqu'on clique pour voir les options */
+.choice-box .context-menu {
+    -fx-background-color: navy;
+    -fx-text-fill: aliceblue;
+}
+
+/* Style des éléments dans la liste déroulante */
+.choice-box .menu-item > .label {
+    -fx-text-fill: aliceblue;
+    -fx-font-size: 13px;
+}
+
+/* Effet hover dans la liste */
+.choice-box .menu-item:focused {
+    -fx-background-color: midnightblue;
+}
