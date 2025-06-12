@@ -4,4 +4,5 @@ module be.ac.umons.razanajao.sddproject {
     exports be.ac.umons.razanajao.sddproject;
     requires javafx.controls;
     requires javafx.base;
+    requires java.desktop;
 }

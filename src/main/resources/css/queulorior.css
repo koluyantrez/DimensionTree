@@ -1,0 +1,89 @@
+
+.root {
+    -fx-background-color: midnightblue;
+}
+
+.input {
+  -fx-background-color: navy;
+  -fx-pref-width: 555px;
+  -fx-pref-height: 55px;
+  -fx-padding: 10px;
+  -fx-border-color: white;
+  -fx-border-width: 2px;
+  -fx-border-style: solid;
+  -fx-border-radius: 4px;
+  -fx-background-radius: 5px;
+  -fx-font-size: 20px;
+}
+
+.input:focused {
+  -fx-text-fill: aliceblue;
+  -fx-background-color: navy;
+  -fx-effect: dropshadow(gaussian, aliceblue, 10, 0.5, 0, 0);
+  -fx-border-color: aliceblue;
+}
+
+
+.notifGreen {
+    -fx-font-size: 64px;
+    -fx-text-fill: forestgreen;
+    -fx-effect: dropshadow( one-pass-box , forestgreen , 8 , 0.0 , 3 , 0 )
+}
+
+.notifRed {
+    -fx-font-size: 64px;
+    -fx-text-fill: crimson;
+    -fx-effect: dropshadow( one-pass-box , crimson , 8 , 0.0 , 3 , 0 )
+}
+
+.button {
+    -fx-font-size: 17px;
+    -fx-padding: 0.5em 2em;
+    -fx-background-color: navy;
+    -fx-text-fill: aliceblue;
+    -fx-background-radius: 4px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(one-pass-box, black, 4, 0, 2, 2);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(darkslateblue, midnightblue);
+}
+
+.button:pressed {
+    -fx-translate-y: 0.2em;
+}
+
+.choice-box {
+    -fx-background-color: navy;
+    -fx-text-fill: aliceblue;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10 5 10;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.5), 4, 0, 2, 2);
+    -fx-border-color: aliceblue;
+    -fx-border-radius: 5;
+    -fx-border-width: 1px;
+}
+
+/* Pour l'affichage du bouton flèche */
+.choice-box .arrow {
+    -fx-background-color: aliceblue;
+}
+
+/* Lorsqu'on clique pour voir les options */
+.choice-box .context-menu {
+    -fx-background-color: navy;
+    -fx-text-fill: aliceblue;
+}
+
+/* Style des éléments dans la liste déroulante */
+.choice-box .menu-item > .label {
+    -fx-text-fill: aliceblue;
+    -fx-font-size: 13px;
+}
+
+/* Effet hover dans la liste */
+.choice-box .menu-item:focused {
+    -fx-background-color: midnightblue;
+}
