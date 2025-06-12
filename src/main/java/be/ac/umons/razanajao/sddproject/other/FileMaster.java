@@ -60,4 +60,18 @@ public class FileMaster {
         }
         return false;
     }
+
+    /**
+     * Deletes a file in the map directory.
+     *
+     * @param name The name of the file to delete.
+     */
+    public static void deleteFile(String name) {
+        File target = new File(DATA_ACCESS + File.separator + name);
+        try {
+            if (target.isFile()) Files.delete(target.toPath());
+        } catch (IOException e) {
+            TestOrthogonalRangeSearching.redCode("No such file found");
+        }
+    }
 }
