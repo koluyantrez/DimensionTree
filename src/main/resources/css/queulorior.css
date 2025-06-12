@@ -57,7 +57,7 @@
 .choice-box {
     -fx-background-color: navy;
     -fx-text-fill: aliceblue;
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-background-radius: 5;
     -fx-padding: 5 10 5 10;
     -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.5), 4, 0, 2, 2);
@@ -73,7 +73,7 @@
 
 /* Lorsqu'on clique pour voir les options */
 .choice-box .context-menu {
-    -fx-background-color: navy;
+    -fx-background-color: midnightblue;
     -fx-text-fill: aliceblue;
 }
 
@@ -85,5 +85,10 @@
 
 /* Effet hover dans la liste */
 .choice-box .menu-item:focused {
-    -fx-background-color: midnightblue;
+    -fx-background-color: darkslateblue;
 }
+
+.choice-box > .label {
+    -fx-text-fill: aliceblue;
+}
+

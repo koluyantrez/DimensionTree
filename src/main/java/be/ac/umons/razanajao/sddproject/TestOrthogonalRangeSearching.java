@@ -1,5 +1,7 @@
 package be.ac.umons.razanajao.sddproject;
 
+import be.ac.umons.razanajao.sddproject.other.FileMaster;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
@@ -22,12 +24,13 @@ public class TestOrthogonalRangeSearching extends Application {
 
     private final TextField inputUser = new TextField();
     private final Button importFile = new Button("import your file");
+    private ChoiceBox data;
 
 
     private static final Label notifGreen = new Label("");
     private static final Label notifRed = new Label("");
 
-    private final ArrayList<String> dataList = new ArrayList<>();
+    private ArrayList<String> dataList = new ArrayList<>();
 
 
     /**
@@ -54,8 +57,9 @@ public class TestOrthogonalRangeSearching extends Application {
     public void start(Stage stage) throws IOException {
         stage.setTitle("Project of SDD2 : Orthogonal Range Searching");
         canvas = new Canvas(870, 870);
-
-        ChoiceBox data = new ChoiceBox(FXCollections.observableArrayList(dataList));
+        dataList = FileMaster.initDefault();
+        data = new ChoiceBox(FXCollections.observableArrayList(dataList));
+        data.getSelectionModel().selectFirst();
 
         inputUser.getStyleClass().add("input");
         inputUser.setLayoutX(50);
