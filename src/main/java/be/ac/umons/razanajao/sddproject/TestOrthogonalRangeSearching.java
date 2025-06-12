@@ -30,7 +30,8 @@ public class TestOrthogonalRangeSearching extends Application {
     private static final Label notifGreen = new Label("");
     private static final Label notifRed = new Label("");
 
-    private ArrayList<String> dataList = new ArrayList<>();
+    public static ArrayList<String> dataList = new ArrayList<>();
+    public static String imp;
 
 
     /**
@@ -90,6 +91,15 @@ public class TestOrthogonalRangeSearching extends Application {
                 importFile,
                 data
         );
+
+        importFile.setOnAction(
+                e -> {
+                    if (FileMaster.mapChooser(stage)) {
+                        dataList.add(imp);
+                        data.setItems(FXCollections.observableArrayList(dataList));
+                        data.getSelectionModel().selectLast();
+                    }
+                });
 
         Scene scene = new Scene(root, 1500, 900);
         scene.getStylesheets().add(getClass().getResource("/css/queulorior.css").toExternalForm());

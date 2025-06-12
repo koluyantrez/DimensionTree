@@ -25,13 +25,13 @@
 
 
 .notifGreen {
-    -fx-font-size: 64px;
+    -fx-font-size: 32px;
     -fx-text-fill: forestgreen;
     -fx-effect: dropshadow( one-pass-box , forestgreen , 8 , 0.0 , 3 , 0 )
 }
 
 .notifRed {
-    -fx-font-size: 64px;
+    -fx-font-size: 32px;
     -fx-text-fill: crimson;
     -fx-effect: dropshadow( one-pass-box , crimson , 8 , 0.0 , 3 , 0 )
 }

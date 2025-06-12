@@ -1,7 +1,15 @@
 package be.ac.umons.razanajao.sddproject.other;
 
 
+import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -27,5 +35,29 @@ public class FileMaster {
             aldl.addAll(Arrays.asList(dataListed));
         }
         return aldl;
+    }
+
+    public static boolean mapChooser(Stage s) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select a text file");
+
+        File selectedFile = fileChooser.showOpenDialog(s);
+
+        if (selectedFile != null && selectedFile.getName().toLowerCase().endsWith(".txt")) {
+            try {
+                Path source = selectedFile.toPath();
+                Path destination = new File(DATA_ACCESS, selectedFile.getName()).toPath();
+                Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
+                TestOrthogonalRangeSearching.imp = selectedFile.getName();
+                TestOrthogonalRangeSearching.greenCode("Your file called "+selectedFile.getName()+" was successfully added");
+                return true;
+            } catch (IOException e) {
+                TestOrthogonalRangeSearching.redCode("The import has failed");
+            }
+        } else {
+            TestOrthogonalRangeSearching.redCode("Your file was not detected, it must be a text file.");
+            return false;
+        }
+        return false;
     }
 }
