@@ -24,6 +24,7 @@ public class TestOrthogonalRangeSearching extends Application {
 
     private final TextField inputUser = new TextField();
     private final Button importFile = new Button("import your file");
+    private final Button killer = new Button("Remove this file");
     private ChoiceBox data;
 
 
@@ -64,23 +65,27 @@ public class TestOrthogonalRangeSearching extends Application {
 
         inputUser.getStyleClass().add("input");
         inputUser.setLayoutX(50);
-        inputUser.setLayoutY(50);
+        inputUser.setLayoutY(100);
 
         notifGreen.getStyleClass().add("notifGreen");
         notifGreen.setLayoutX(55);
-        notifGreen.setLayoutY(800);
+        notifGreen.setLayoutY(820);
 
         notifRed.getStyleClass().add("notifRed");
         notifRed.setLayoutX(55);
-        notifRed.setLayoutY(800);
+        notifRed.setLayoutY(820);
 
         importFile.getStyleClass().add("button");
-        importFile.setLayoutX(50);
-        importFile.setLayoutY(150);
+        importFile.setLayoutX(300);
+        importFile.setLayoutY(180);
+
+        killer.getStyleClass().add("button");
+        killer.setLayoutX(50);
+        killer.setLayoutY(180);
 
         data.getStyleClass().add("choice-box");
-        data.setLayoutX(300);
-        data.setLayoutY(150);
+        data.setLayoutX(50);
+        data.setLayoutY(20);
 
 
 
@@ -89,7 +94,8 @@ public class TestOrthogonalRangeSearching extends Application {
                 notifGreen,
                 notifRed,
                 importFile,
-                data
+                data,
+                killer
         );
 
         importFile.setOnAction(
@@ -99,6 +105,16 @@ public class TestOrthogonalRangeSearching extends Application {
                         data.setItems(FXCollections.observableArrayList(dataList));
                         data.getSelectionModel().selectLast();
                     }
+                });
+
+        killer.setOnAction(
+                e -> {
+                    String file = data.getValue().toString();
+                    FileMaster.deleteFile(file);
+                    dataList.remove(file);
+                    data.setItems(FXCollections.observableArrayList(dataList));
+                    data.getSelectionModel().selectLast();
+                    greenCode("The file "+file+" was successfully removed");
                 });
 
         Scene scene = new Scene(root, 1500, 900);
