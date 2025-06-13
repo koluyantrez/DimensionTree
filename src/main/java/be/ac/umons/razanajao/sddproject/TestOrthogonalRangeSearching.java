@@ -25,6 +25,7 @@ public class TestOrthogonalRangeSearching extends Application {
     private final TextField inputUser = new TextField();
     private final Button importFile = new Button("import your file");
     private final Button killer = new Button("Remove this file");
+    private final Button help = new Button("?");
     private ChoiceBox data;
 
 
@@ -55,9 +56,43 @@ public class TestOrthogonalRangeSearching extends Application {
         notifGreen.setText(msg);
     }
 
+
+    private void helpScene(Stage stage,Scene mainScene) {
+        Button back = new Button("←");
+        Label label = new Label();
+        label.setWrapText(true);
+        label.setMaxWidth(1300);  // Définit une largeur max pour éviter un affichage trop large
+
+
+        FileMaster.toHelp(label);
+
+
+        back.setOnAction(e -> stage.setScene(stage.getScene()));
+        label.getStyleClass().add("descri");
+        back.getStyleClass().add("help");
+        Pane h = new Pane();
+        h.getChildren().addAll(label,back);
+
+        label.setLayoutX(50);
+        label.setLayoutY(50);
+
+        back.setLayoutX(1420);
+        back.setLayoutY(25);
+        Scene scene2 = new Scene(h, 1500, 900);
+        scene2.getStylesheets().add(getClass().getResource("/css/queulorior.css").toExternalForm());
+
+        stage.setScene(scene2);
+        back.setOnAction(
+                e -> {
+                    stage.setScene(mainScene);
+                });
+    }
+
+
     @Override
     public void start(Stage stage) throws IOException {
         stage.setTitle("Project of SDD2 : Orthogonal Range Searching");
+        Scene scene = new Scene(root, 1500, 900);
         canvas = new Canvas(870, 870);
         dataList = FileMaster.initDefault();
         data = new ChoiceBox(FXCollections.observableArrayList(dataList));
@@ -87,6 +122,9 @@ public class TestOrthogonalRangeSearching extends Application {
         data.setLayoutX(50);
         data.setLayoutY(20);
 
+        help.getStyleClass().add("help");
+        help.setLayoutX(550);
+        help.setLayoutY(20);
 
 
         root.getChildren().addAll(
@@ -95,6 +133,7 @@ public class TestOrthogonalRangeSearching extends Application {
                 notifRed,
                 importFile,
                 data,
+                help,
                 killer
         );
 
@@ -117,7 +156,10 @@ public class TestOrthogonalRangeSearching extends Application {
                     greenCode("The file "+file+" was successfully removed");
                 });
 
-        Scene scene = new Scene(root, 1500, 900);
+        help.setOnAction(
+                e -> helpScene(stage,scene)
+        );
+
         scene.getStylesheets().add(getClass().getResource("/css/queulorior.css").toExternalForm());
         stage.setScene(scene);
         stage.show();

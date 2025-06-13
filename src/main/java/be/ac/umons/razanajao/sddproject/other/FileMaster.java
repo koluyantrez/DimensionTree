@@ -2,10 +2,13 @@ package be.ac.umons.razanajao.sddproject.other;
 
 
 import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;
+import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,7 +29,18 @@ public class FileMaster {
                             + "resources"
                             + File.separator
                             + "data");
-
+    private static final File HELP_FILE =
+            new File(
+                    System.getProperty("user.dir")
+                            + File.separator
+                            + "src"
+                            + File.separator
+                            + "main"
+                            + File.separator
+                            + "resources"
+                            + File.separator
+                            + "other"+ File.separator
+                            + "help.txt");
 
     public static ArrayList<String> initDefault() {
         String[] dataListed = DATA_ACCESS.list();
@@ -72,6 +86,19 @@ public class FileMaster {
             if (target.isFile()) Files.delete(target.toPath());
         } catch (IOException e) {
             TestOrthogonalRangeSearching.redCode("No such file found");
+        }
+    }
+
+    public static void toHelp(Label label){
+        try (BufferedReader reader = new BufferedReader(new FileReader(HELP_FILE))) {
+            StringBuilder content = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+            label.setText(content.toString());
+        } catch (IOException e) {
+            label.setText("Error help file : " + e.getMessage());
         }
     }
 }
