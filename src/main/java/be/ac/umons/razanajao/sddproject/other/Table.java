@@ -13,6 +13,13 @@ public class Table {
         this.data = new String[x][y];
     }
 
+    public Table(String[] header, String[][] data){
+        this.header=header;
+        this.data=data;
+        this.x=data[0].length;
+        this.y=header.length;
+    }
+
 
 
 

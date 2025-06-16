@@ -101,4 +101,60 @@ public class FileMaster {
             label.setText("Error help file : " + e.getMessage());
         }
     }
+
+    public String[] readHeader(String name) {
+        String[] header = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(DATA_ACCESS + File.separator + name))) {
+            String line = br.readLine();
+            if (line != null) {
+                int k = Integer.parseInt(line);
+                header = new String[k];
+                for (int i = 0; i < k; i++) {
+                    header[i] = br.readLine();
+                }
+            }
+        } catch (IOException e) {
+            TestOrthogonalRangeSearching.redCode("Something wrong with the header");
+        } catch (NumberFormatException e){
+            TestOrthogonalRangeSearching.redCode("Something wrong with the number indication");
+        }
+        return header;
+    }
+
+    public String[][] readData(String name) {
+        String[][] data = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(DATA_ACCESS + File.separator + name))) {
+            String line = br.readLine();
+            if (line == null)
+                return null;
+
+            int y = Integer.parseInt(line);
+            for (int i=0;i<y;i++) {
+                br.readLine();
+            }
+
+
+            line = br.readLine();
+            if (line == null)
+                return null;
+
+            int x = Integer.parseInt(line);
+            data = new String[x][];
+
+            for (int i=0; i<x;i++) {
+                line = br.readLine();
+                if (line != null) {
+                    data[i] = line.split(" ");
+                }
+            }
+
+        } catch (IOException e) {
+            TestOrthogonalRangeSearching.redCode("Something wrong with the file "+name);
+        } catch (NumberFormatException e) {
+            TestOrthogonalRangeSearching.redCode("Something wrong with the number indication");
+        }
+        return data;
+    }
+
+
 }
