@@ -102,7 +102,7 @@ public class FileMaster {
         }
     }
 
-    public String[] readHeader(String name) {
+    public static String[] readHeader(String name) {
         String[] header = null;
         try (BufferedReader br = new BufferedReader(new FileReader(DATA_ACCESS + File.separator + name))) {
             String line = br.readLine();
@@ -121,7 +121,7 @@ public class FileMaster {
         return header;
     }
 
-    public String[][] readData(String name) {
+    public static String[][] readData(String name) {
         String[][] data = null;
         try (BufferedReader br = new BufferedReader(new FileReader(DATA_ACCESS + File.separator + name))) {
             String line = br.readLine();
@@ -154,6 +154,10 @@ public class FileMaster {
             TestOrthogonalRangeSearching.redCode("Something wrong with the number indication");
         }
         return data;
+    }
+
+    public static Table createTable(String name){
+        return new Table(readHeader(name),readData(name));
     }
 
 
