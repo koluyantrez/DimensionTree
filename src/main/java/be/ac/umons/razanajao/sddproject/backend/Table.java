@@ -1,4 +1,4 @@
-package be.ac.umons.razanajao.sddproject.other;
+package be.ac.umons.razanajao.sddproject.backend;
 
 public class Table {
 
@@ -18,6 +18,20 @@ public class Table {
         this.data=data;
         this.x=data[0].length;
         this.y=header.length;
+    }
+
+
+    public void display(){
+        for(String s : this.header){
+            System.out.print(s+" ");
+        }
+        System.out.println();
+        for(String[] r : this.data){
+            for(String d : r){
+                System.out.print(d+" ");
+            }
+            System.out.println();
+        }
     }
 
 

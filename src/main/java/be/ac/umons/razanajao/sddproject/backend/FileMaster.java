@@ -1,4 +1,4 @@
-package be.ac.umons.razanajao.sddproject.other;
+package be.ac.umons.razanajao.sddproject.backend;
 
 
 import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;

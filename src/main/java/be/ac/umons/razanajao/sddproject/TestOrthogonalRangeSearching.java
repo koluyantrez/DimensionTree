@@ -1,18 +1,17 @@
 package be.ac.umons.razanajao.sddproject;
 
-import be.ac.umons.razanajao.sddproject.other.FileMaster;
+import be.ac.umons.razanajao.sddproject.backend.FileMaster;
 
+import be.ac.umons.razanajao.sddproject.backend.Table;
+import be.ac.umons.razanajao.sddproject.frontend.FrontGrid;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,12 +19,15 @@ import java.util.ArrayList;
 public class TestOrthogonalRangeSearching extends Application {
 
     private final Pane root = new Pane();
-    private Canvas canvas;
+    private final ScrollPane sp = new ScrollPane();
+    GridPane gp = new GridPane();
 
     private final TextField inputUser = new TextField();
     private final Button importFile = new Button("import your file");
     private final Button killer = new Button("Remove this file");
     private final Button help = new Button("?");
+    private final Button displayGrid = new Button("Show as a table");
+    private final Button displayTree = new Button("Show as a tree");
     private ChoiceBox data;
 
 
@@ -93,10 +95,23 @@ public class TestOrthogonalRangeSearching extends Application {
     public void start(Stage stage) throws IOException {
         stage.setTitle("Project of SDD2 : Orthogonal Range Searching");
         Scene scene = new Scene(root, 1500, 900);
-        canvas = new Canvas(870, 870);
+
+        sp.setVisible(false);
+        sp.setPrefViewportWidth(620); // largeur de la vue
+        sp.setPrefViewportHeight(800); // hauteur de la vue
+        sp.setPannable(true); // scroll possible avec la souris
+        sp.setLayoutX(800);
+        sp.setLayoutY(50);
+        sp.setContent(gp);
+
+
         dataList = FileMaster.initDefault();
         data = new ChoiceBox(FXCollections.observableArrayList(dataList));
         data.getSelectionModel().selectFirst();
+
+
+
+
 
         inputUser.getStyleClass().add("input");
         inputUser.setLayoutX(50);
@@ -118,6 +133,10 @@ public class TestOrthogonalRangeSearching extends Application {
         killer.setLayoutX(50);
         killer.setLayoutY(180);
 
+        displayTree.getStyleClass().add("button");
+        displayTree.setLayoutX(300);
+        displayTree.setLayoutY(250);
+
         data.getStyleClass().add("choice-box");
         data.setLayoutX(50);
         data.setLayoutY(20);
@@ -126,15 +145,23 @@ public class TestOrthogonalRangeSearching extends Application {
         help.setLayoutX(550);
         help.setLayoutY(20);
 
+        displayGrid.getStyleClass().add("button");
+        displayGrid.setLayoutX(50);
+        displayGrid.setLayoutY(250);
+
 
         root.getChildren().addAll(
+
                 inputUser,
+                displayTree,
                 notifGreen,
                 notifRed,
+                displayGrid,
                 importFile,
                 data,
                 help,
-                killer
+                killer,
+                sp
         );
 
         importFile.setOnAction(
@@ -155,6 +182,26 @@ public class TestOrthogonalRangeSearching extends Application {
                     data.getSelectionModel().selectLast();
                     greenCode("The file "+file+" was successfully removed");
                 });
+
+        displayGrid.setOnAction(
+                e -> {
+                    sp.setVisible(true);
+                    Table t = FileMaster.createTable(data.getValue().toString());
+                    t.display();
+                    gp = FrontGrid.onGridPane(t);
+                    gp.setHgap(80);
+                    gp.setVgap(100);
+                    gp.getStyleClass().add("grid");
+                    sp.setContent(gp);
+                    greenCode(data.getValue()+" is displayed as a table");
+                }
+        );
+
+        displayTree.setOnAction(
+                e -> {
+                    greenCode(data.getValue()+" is displayed as a tree");
+                }
+        );
 
         help.setOnAction(
                 e -> helpScene(stage,scene)
