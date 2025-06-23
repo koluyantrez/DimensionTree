@@ -2,6 +2,8 @@
 //L'arbre vide n'est pas represente par une reference vide, 
 //mais par un "noeud vide", c'est-a-dire une feuille sans donnee
 
+package be.ac.umons.razanajao.sddproject.structure;
+
 public class Tree<D> {
 	private D data;
 	private Tree<D> left, right;

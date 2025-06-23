@@ -1,5 +1,7 @@
 package be.ac.umons.razanajao.sddproject.backend;
 
+import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;
+
 public class Table {
 
     int x,y;
@@ -31,6 +33,30 @@ public class Table {
                 System.out.print(d+" ");
             }
             System.out.println();
+        }
+    }
+
+    public void add(String request){
+        String[] arr = request.split(",");
+        if(arr.length!=this.header.length){
+            TestOrthogonalRangeSearching.redCode("The query data is invalid (size)");
+        }
+        try{
+            for(int i=0;i<arr.length-1;i++){
+                Integer.parseInt(arr[i]);
+            }
+            int newX = this.x+1;
+            String[][] update = new String[newX][this.y];
+
+            for(int i=0;i<this.x;i++) {
+                update[i] = getData()[i];
+            }
+            update[this.x] = arr;
+            setData(update);
+            setX(newX);
+
+        } catch (NumberFormatException e) {
+            TestOrthogonalRangeSearching.redCode("The query data is invalid (data)");
         }
     }
 
