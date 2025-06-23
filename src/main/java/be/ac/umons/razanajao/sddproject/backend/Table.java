@@ -54,10 +54,31 @@ public class Table {
             update[this.x] = arr;
             setData(update);
             setX(newX);
+            TestOrthogonalRangeSearching.greenCode(request+" are added");
 
         } catch (NumberFormatException e) {
             TestOrthogonalRangeSearching.redCode("The query data is invalid (data)");
         }
+    }
+
+    public void remove(int number){
+        if(number>this.getX()){
+            TestOrthogonalRangeSearching.redCode("The index must be lower than "+this.getX());
+        }else{
+            int newX = this.x-1;
+            String[][] update = new String[newX][this.y];
+            for(int i=0;i<this.x;i++) {
+                if(i!=number) {
+                    update[i] = getData()[i];
+                }else{
+                    String removed = String.join(", ", getData()[i]);
+                    TestOrthogonalRangeSearching.greenCode(removed+" are removed");
+                }
+            }
+            setData(update);
+            setX(newX);
+        }
+
     }
 
 
