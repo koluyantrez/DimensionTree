@@ -4,10 +4,7 @@ import be.ac.umons.razanajao.sddproject.backend.Table;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import javafx.scene.layout.GridPane;
 
 public class FrontGrid {
