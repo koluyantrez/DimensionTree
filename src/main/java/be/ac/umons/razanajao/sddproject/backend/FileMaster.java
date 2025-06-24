@@ -177,20 +177,22 @@ public class FileMaster {
     }
 
     public static void save(Table t, String name){
-        try (FileWriter fw = new FileWriter(DATA_ACCESS+File.separator+name, false)) {
+        if(!name.endsWith(".txt"))
+            name = name+".txt";
+        try (FileWriter fw = new FileWriter(DATA_ACCESS+File.separator+name)) {
             fw.write(t.getY() + '\n');
             for (int i = 0; i < t.getY(); i++) {
                 fw.write(t.getHeader()[i] + '\n');
             }
             fw.write(t.getX() + '\n');
-            for (String[] babeth : t.getData()){
+            for (String[] gemarie : t.getData()){
                 for (int i = 0; i < t.getX(); i++) {
-                    fw.write(babeth[i] + '\n');
+                    fw.write(gemarie[i] + '\n');
                 }
             }
-            TestOrthogonalRangeSearching.greenCode("Overwriting of the file done");
+            TestOrthogonalRangeSearching.greenCode("Your file has created");
         } catch (IOException e) {
-            TestOrthogonalRangeSearching.redCode("Something wrong during the overwriting");
+            TestOrthogonalRangeSearching.redCode("Something wrong during the creation");
         }
     }
 
