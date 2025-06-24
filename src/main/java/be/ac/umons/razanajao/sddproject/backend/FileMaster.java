@@ -6,10 +6,7 @@ import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -160,5 +157,41 @@ public class FileMaster {
         return new Table(readHeader(name),readData(name));
     }
 
+
+    public static void overwrite(Table t, String name){
+        try (FileWriter fw = new FileWriter(DATA_ACCESS+File.separator+name, false)) {
+            fw.write(t.getY() + '\n');
+            for (int i = 0; i < t.getY(); i++) {
+                fw.write(t.getHeader()[i] + '\n');
+            }
+            fw.write(t.getX() + '\n');
+            for (String[] babeth : t.getData()){
+                for (int i = 0; i < t.getX(); i++) {
+                    fw.write(babeth[i] + '\n');
+                }
+            }
+            TestOrthogonalRangeSearching.greenCode("Overwriting of the file done");
+        } catch (IOException e) {
+            TestOrthogonalRangeSearching.redCode("Something wrong during the overwriting");
+        }
+    }
+
+    public static void save(Table t, String name){
+        try (FileWriter fw = new FileWriter(DATA_ACCESS+File.separator+name, false)) {
+            fw.write(t.getY() + '\n');
+            for (int i = 0; i < t.getY(); i++) {
+                fw.write(t.getHeader()[i] + '\n');
+            }
+            fw.write(t.getX() + '\n');
+            for (String[] babeth : t.getData()){
+                for (int i = 0; i < t.getX(); i++) {
+                    fw.write(babeth[i] + '\n');
+                }
+            }
+            TestOrthogonalRangeSearching.greenCode("Overwriting of the file done");
+        } catch (IOException e) {
+            TestOrthogonalRangeSearching.redCode("Something wrong during the overwriting");
+        }
+    }
 
 }

@@ -49,6 +49,12 @@
     -fx-background-radius: 4px;
     -fx-border-color: transparent;
     -fx-effect: dropshadow(one-pass-box, black, 4, 0, 2, 2);
+    -fx-pref-width: 230px;   /* largeur préférée */
+    -fx-pref-height: 40px;   /* hauteur préférée */
+    -fx-min-width: 150px;    /* empêche de devenir plus petit */
+    -fx-min-height: 40px;
+    -fx-max-width: 300px;    /* empêche de devenir plus grand */
+    -fx-max-height: 40px;
 }
 
 .button:hover {
@@ -56,7 +62,7 @@
 }
 
 .button:pressed {
-    -fx-translate-y: 0.2em;
+    -fx-translate-y: 0.1em;
 }
 
 .choice-box {
@@ -137,3 +143,29 @@
     -fx-vgap: 10px;
 }
 
+/* Conteneur personnalisé */
+.input-wrapper {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+/* Champ de texte stylisé */
+.custom-input {
+    -fx-background-color: navy;
+    -fx-pref-width: 190px;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.42) transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 10px;
+    -fx-font-size: 17px;
+    -fx-text-fill: aliceblue;
+    -fx-background-radius: 5 5 0 0;
+    -fx-effect: dropshadow(gaussian, black, 2, 0.1, 0, 1);
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.6);
+}
+
+.custom-input:focused {
+    -fx-background-color: darkslateblue;
+    -fx-border-color: transparent transparent aliceblue transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-prompt-text-fill: transparent;
+}

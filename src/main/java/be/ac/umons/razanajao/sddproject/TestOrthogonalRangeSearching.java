@@ -23,11 +23,14 @@ public class TestOrthogonalRangeSearching extends Application {
     GridPane gp = new GridPane();
 
     private final TextField inputUser = new TextField();
+    private final TextField newFileName = new TextField("Name your file.txt");
     private final Button importFile = new Button("import your file");
     private final Button killer = new Button("Remove this file");
     private final Button help = new Button("?");
     private final Button displayGrid = new Button("Show as a table");
     private final Button displayTree = new Button("Show as a tree");
+    private final Button overw = new Button("Overwrite the file");
+    private final Button save = new Button("⬇");
     private ChoiceBox data;
 
 
@@ -97,9 +100,9 @@ public class TestOrthogonalRangeSearching extends Application {
         Scene scene = new Scene(root, 1500, 900);
 
         sp.setVisible(false);
-        sp.setPrefViewportWidth(620); // largeur de la vue
-        sp.setPrefViewportHeight(800); // hauteur de la vue
-        sp.setPannable(true); // scroll possible avec la souris
+        sp.setPrefViewportWidth(620);
+        sp.setPrefViewportHeight(800);
+        sp.setPannable(true);
         sp.setLayoutX(800);
         sp.setLayoutY(50);
         sp.setContent(gp);
@@ -126,7 +129,7 @@ public class TestOrthogonalRangeSearching extends Application {
         notifRed.setLayoutY(820);
 
         importFile.getStyleClass().add("button");
-        importFile.setLayoutX(300);
+        importFile.setLayoutX(370);
         importFile.setLayoutY(180);
 
         killer.getStyleClass().add("button");
@@ -134,7 +137,7 @@ public class TestOrthogonalRangeSearching extends Application {
         killer.setLayoutY(180);
 
         displayTree.getStyleClass().add("button");
-        displayTree.setLayoutX(300);
+        displayTree.setLayoutX(370);
         displayTree.setLayoutY(250);
 
         data.getStyleClass().add("choice-box");
@@ -149,17 +152,31 @@ public class TestOrthogonalRangeSearching extends Application {
         displayGrid.setLayoutX(50);
         displayGrid.setLayoutY(250);
 
+        overw.getStyleClass().add("button");
+        overw.setLayoutX(50);
+        overw.setLayoutY(320);
+
+        save.getStyleClass().add("help");
+        save.setLayoutX(580);
+        save.setLayoutY(320);
+
+        newFileName.getStyleClass().add("custom-input");
+        newFileName.setLayoutX(370);
+        newFileName.setLayoutY(320);
 
         root.getChildren().addAll(
 
                 inputUser,
                 displayTree,
                 notifGreen,
+                newFileName,
                 notifRed,
                 displayGrid,
                 importFile,
                 data,
+                save,
                 help,
+                overw,
                 killer,
                 sp
         );
