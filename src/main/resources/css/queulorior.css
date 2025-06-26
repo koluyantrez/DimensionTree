@@ -159,7 +159,7 @@
     -fx-font-size: 17px;
     -fx-text-fill: aliceblue;
     -fx-background-radius: 5 5 0 0;
-    -fx-effect: dropshadow(gaussian, black, 2, 0.1, 0, 1);
+    -fx-effect: dropshadow(gaussian, aliceblue, 2, 0.1, 0, 1);
     -fx-prompt-text-fill: rgba(255, 255, 255, 0.6);
 }
 
