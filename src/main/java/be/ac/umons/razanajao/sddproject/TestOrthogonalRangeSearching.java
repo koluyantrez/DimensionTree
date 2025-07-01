@@ -23,6 +23,7 @@ public class TestOrthogonalRangeSearching extends Application {
     private final Pane root = new Pane();
     private final ScrollPane sp = new ScrollPane();
     GridPane gp = new GridPane();
+    Table t;
 
     private final TextField inputUser = new TextField();
     private final TextField newFileName = new TextField("Name your file.txt");
@@ -205,7 +206,7 @@ public class TestOrthogonalRangeSearching extends Application {
         displayGrid.setOnAction(
                 e -> {
                     sp.setVisible(true);
-                    Table t = FileMaster.createTable(data.getValue().toString());
+                    t = FileMaster.createTable(data.getValue().toString());
                     t.display();
                     gp = FrontGrid.onGridPane(t);
                     gp.setHgap(80);
@@ -234,6 +235,15 @@ public class TestOrthogonalRangeSearching extends Application {
                         data.setItems(FXCollections.observableArrayList(dataList));
                         data.getSelectionModel().selectFirst();
                     }
+                }
+        );
+
+        save.setOnAction(
+                e -> {
+                    FileMaster.save(t,newFileName.getText());
+                    dataList = FileMaster.initDefault();
+                    data.setItems(FXCollections.observableArrayList(dataList));
+                    data.getSelectionModel().selectFirst();
                 }
         );
 

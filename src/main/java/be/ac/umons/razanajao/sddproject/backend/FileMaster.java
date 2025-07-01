@@ -180,6 +180,10 @@ public class FileMaster {
     public static void save(Table t, String name){
         if(!name.endsWith(".txt"))
             name = name+".txt";
+        if(t==null){
+            TestOrthogonalRangeSearching.redCode("The table does not exist. Show the data as table or tree.");
+            return;
+        }
         try (FileWriter fw = new FileWriter(DATA_ACCESS+File.separator+name)) {
             fw.write(t.getY() + '\n');
             for (int i = 0; i < t.getY(); i++) {
