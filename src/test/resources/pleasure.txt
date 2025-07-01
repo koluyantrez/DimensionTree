@@ -1,0 +1,15 @@
+3
+weight
+height
+username
+10
+48 1.52 leana
+59 183 bella
+45 157 kayla
+52 165 diana
+50 177 comer
+64 170 molly
+50 160 ghome
+40 157 luna
+70 167 lika
+46 162 lana
