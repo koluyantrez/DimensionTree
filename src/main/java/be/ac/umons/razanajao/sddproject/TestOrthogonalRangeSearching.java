@@ -207,7 +207,7 @@ public class TestOrthogonalRangeSearching extends Application {
                 e -> {
                     sp.setVisible(true);
                     t = FileMaster.createTable(data.getValue().toString());
-                    t.display();
+                    //t.display();
                     gp = FrontGrid.onGridPane(t);
                     gp.setHgap(80);
                     gp.setVgap(100);
