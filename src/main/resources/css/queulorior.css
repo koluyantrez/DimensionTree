@@ -3,7 +3,7 @@
     -fx-background-color: midnightblue;
 }
 
-.input {
+.leana {
   -fx-background-color: navy;
   -fx-pref-width: 555px;
   -fx-pref-height: 55px;
@@ -14,14 +14,19 @@
   -fx-border-radius: 4px;
   -fx-background-radius: 5px;
   -fx-font-size: 20px;
+  -fx-prompt-text-fill: aliceblue;
+  -fx-text-fill: aliceblue;
 }
 
-.input:focused {
+
+.leana:focused {
   -fx-text-fill: aliceblue;
   -fx-background-color: navy;
   -fx-effect: dropshadow(gaussian, aliceblue, 20, 0.5, 0, 0);
   -fx-border-color: aliceblue;
+  -fx-prompt-text-fill: transparent;
 }
+
 
 
 .notifGreen {
@@ -153,19 +158,19 @@
 .custom-input {
     -fx-background-color: navy;
     -fx-pref-width: 190px;
-    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.42) transparent;
+    -fx-border-color: aliceblue;
     -fx-border-width: 0 0 1 0;
     -fx-padding: 10px;
     -fx-font-size: 17px;
     -fx-text-fill: aliceblue;
     -fx-background-radius: 5 5 0 0;
-    -fx-effect: dropshadow(gaussian, aliceblue, 2, 0.1, 0, 1);
-    -fx-prompt-text-fill: rgba(255, 255, 255, 0.6);
+    -fx-prompt-text-fill: aliceblue;
 }
 
 .custom-input:focused {
-    -fx-background-color: darkslateblue;
-    -fx-border-color: transparent transparent aliceblue transparent;
-    -fx-border-width: 0 0 2 0;
-    -fx-prompt-text-fill: transparent;
+  -fx-text-fill: aliceblue;
+  -fx-background-color: navy;
+  -fx-effect: dropshadow(gaussian, aliceblue, 20, 0.5, 0, 0);
+  -fx-border-color: aliceblue;
+  -fx-prompt-text-fill: transparent;
 }
