@@ -4,17 +4,12 @@ import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;
 
 public class InputMaster {
 
-    private String fileName;
-    private static InputMaster im;
 
-    private InputMaster(String fileName){
-        this.fileName=fileName;
-    }
-
-    public void FireWall(String input, String name){
+    public static void FireWall(String input){
         if(input.length()>2) {
-            String first = input.split("[,\\\\s]+")[0];
-            switch (first.toUpperCase()){
+            String first = input.split(" ")[0];
+            System.out.println(first);
+            switch (first){
                 case "SELECT":
                     //
                     break;
@@ -24,29 +19,26 @@ public class InputMaster {
                 case "ADD":
                     //
                     break;
+                case "RENAME":
+                    rename(input);
+                    break;
                 default:
                     TestOrthogonalRangeSearching.redCode(first+" is invalid !");
+                    break;
             }
         }else{
             TestOrthogonalRangeSearching.redCode("Your request is invalid");
         }
     }
 
-    public static InputMaster getInstance(String newFile) {
-        if (im == null) {
-            if(!newFile.equals(im.getFileName())){
-                System.out.println("The file is changed : "+im.fileName+" to "+newFile);
-            }
-            im = new InputMaster(newFile);
+    public static void rename(String input){
+        String[] arInput = input.split("\\s+");
+        if(arInput[2].equals("TO") && arInput.length==4){
+            FileMaster.rename(arInput[3],arInput[1]);
+        }else{
+            TestOrthogonalRangeSearching.redCode("Your RENAME request is invalid");
         }
-        return im;
     }
 
-    public String getFileName() {
-        return fileName;
-    }
 
-    public void setFileName(String newFile){
-        this.fileName=newFile;
-    }
 }

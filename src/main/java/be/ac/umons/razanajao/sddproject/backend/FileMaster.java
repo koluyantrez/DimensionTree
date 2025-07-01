@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -194,6 +195,21 @@ public class FileMaster {
         } catch (IOException e) {
             TestOrthogonalRangeSearching.redCode("Something wrong during the creation");
         }
+    }
+
+    public static void rename(String newName, String oldName){
+        if(!newName.endsWith(".txt"))
+            newName = newName+".txt";
+
+        Path oldFile = Paths.get(DATA_ACCESS+File.separator+oldName);
+        Path newFile = Paths.get(DATA_ACCESS+File.separator+newName);
+        try {
+            Files.move(oldFile, newFile);
+            TestOrthogonalRangeSearching.greenCode("The file has been renamed successfully");
+        } catch (Exception e) {
+            TestOrthogonalRangeSearching.redCode("Failure of the rename");
+        }
+
     }
 
 }

@@ -2,12 +2,14 @@ package be.ac.umons.razanajao.sddproject;
 
 import be.ac.umons.razanajao.sddproject.backend.FileMaster;
 
+import be.ac.umons.razanajao.sddproject.backend.InputMaster;
 import be.ac.umons.razanajao.sddproject.backend.Table;
 import be.ac.umons.razanajao.sddproject.frontend.FrontGrid;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -116,7 +118,7 @@ public class TestOrthogonalRangeSearching extends Application {
 
 
 
-        inputUser.getStyleClass().add("input");
+        inputUser.getStyleClass().add("leana");
         inputUser.setLayoutX(50);
         inputUser.setLayoutY(100);
 
@@ -222,6 +224,17 @@ public class TestOrthogonalRangeSearching extends Application {
 
         help.setOnAction(
                 e -> helpScene(stage,scene)
+        );
+
+        inputUser.setOnKeyPressed(
+                e -> {
+                    if(e.getCode() == KeyCode.ENTER){
+                        InputMaster.FireWall(inputUser.getText());
+                        dataList = FileMaster.initDefault();
+                        data.setItems(FXCollections.observableArrayList(dataList));
+                        data.getSelectionModel().selectFirst();
+                    }
+                }
         );
 
         scene.getStylesheets().add(getClass().getResource("/css/queulorior.css").toExternalForm());
