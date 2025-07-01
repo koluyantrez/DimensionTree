@@ -1,0 +1,2 @@
+RENAME ytbgame.txt TO ytb.txt
+RENAME ytb.txt TO ytbgame.txt
