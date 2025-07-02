@@ -40,6 +40,12 @@ public class FileMaster {
                             + "other"+ File.separator
                             + "help.txt");
 
+
+    /**
+     * This function gives an arraylist with the name of all data from resources.
+     *
+     * @return  ArrayList<String> with the name of all database.
+     */
     public static ArrayList<String> initDefault() {
         String[] dataListed = DATA_ACCESS.list();
         ArrayList<String> aldl = new ArrayList<>();
@@ -49,7 +55,13 @@ public class FileMaster {
         return aldl;
     }
 
-    public static boolean mapChooser(Stage s) {
+    /**
+     * It allows the user to import his data.
+     *
+     * @param s The main stage of the project
+     * @return  True if it was added.
+     */
+    public static boolean importFile(Stage s) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a text file");
 
@@ -87,6 +99,11 @@ public class FileMaster {
         }
     }
 
+    /**
+     * This function puts the content of "help.txt" in a label. This is for the help scene.
+     *
+     * @param label The label to put the text.
+     */
     public static void toHelp(Label label){
         try (BufferedReader reader = new BufferedReader(new FileReader(HELP_FILE))) {
             StringBuilder content = new StringBuilder();
@@ -100,6 +117,12 @@ public class FileMaster {
         }
     }
 
+    /**
+     * It is designed to put the names of the columns in an array of string.
+     *
+     * @param name  The name of the file.
+     * @return      String[] with the names of the columns
+     */
     public static String[] readHeader(String name) {
         String[] header = null;
         try (BufferedReader br = new BufferedReader(new FileReader(DATA_ACCESS + File.separator + name))) {
@@ -119,6 +142,12 @@ public class FileMaster {
         return header;
     }
 
+    /**
+     * It is designed to put the data in an 2D-array of string.
+     *
+     * @param name  The name of the file.
+     * @return      String[][] with data.
+     */
     public static String[][] readData(String name) {
         String[][] data = null;
         try (BufferedReader br = new BufferedReader(new FileReader(DATA_ACCESS + File.separator + name))) {
@@ -154,12 +183,28 @@ public class FileMaster {
         return data;
     }
 
+    /**
+     * This function gives a Table object.
+     *
+     * @param name  The name of the file
+     * @return      Table with names of columns and data
+     */
     public static Table createTable(String name){
         return new Table(readHeader(name),readData(name));
     }
 
 
+    /**
+     * It allows to overwrite a file.
+     *
+     * @param t     The table with data.
+     * @param name  The name of the file.
+     */
     public static void overwrite(Table t, String name){
+        if(t==null){
+            TestOrthogonalRangeSearching.redCode("The table does not exist. Show the data as table or tree.");
+            return;
+        }
         try (FileWriter fw = new FileWriter(DATA_ACCESS+File.separator+name, false)) {
             fw.write(t.getY() + '\n');
             for (int i = 0; i < t.getY(); i++) {
@@ -177,6 +222,12 @@ public class FileMaster {
         }
     }
 
+    /**
+     * This function allows to create a file with the content of the current table.
+     *
+     * @param t     The current table.
+     * @param name  The name of the new file.
+     */
     public static void save(Table t, String name){
         if(!name.endsWith(".txt"))
             name = name+".txt";
@@ -201,6 +252,12 @@ public class FileMaster {
         }
     }
 
+    /**
+     * it allows to rename a file.
+     *
+     * @param newName   The new name of the file.
+     * @param oldName   The old name of the file.
+     */
     public static void rename(String newName, String oldName){
         if(!newName.endsWith(".txt"))
             newName = newName+".txt";

@@ -2,12 +2,24 @@ package be.ac.umons.razanajao.sddproject.backend;
 
 import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;
 
+
+/**
+ * This class is made to recover data from a file in backend. We distinct the names of columns and data.
+ *
+ */
 public class Table {
 
     int x,y;
     String[] header;
     String[][] data;
 
+    /**
+     * A table is defined by dimension (row and column). With this parameter, we can initialise the array for header
+     * and data. The row with the name of colums is not counted for x.
+     *
+     * @param x The number of rows for data
+     * @param y The number of columns for data. It is also the size of the header.
+     */
     public Table(int x, int y){
         this.x=x;
         this.y=y;
@@ -15,6 +27,13 @@ public class Table {
         this.data = new String[x][y];
     }
 
+    /**
+     * If there are already the arrays, we can use them to initialise the table. the case that dimension does not
+     * match is managed in another file.
+     *
+     * @param header    String[] with the names of colums.
+     * @param data      String[][] with data.
+     */
     public Table(String[] header, String[][] data){
         this.header=header;
         this.data=data;
@@ -22,7 +41,10 @@ public class Table {
         this.y=header.length;
     }
 
-
+    /**
+     * This method show the content of table in the terminal, this is like the content of the text file.
+     *
+     */
     public void display(){
         for(String s : this.header){
             System.out.print(s+" ");
@@ -36,6 +58,11 @@ public class Table {
         }
     }
 
+    /**
+     * This method allows to put new data in the table, the format must be respected.
+     *
+     * @param request   The new data to put in the table.
+     */
     public void add(String request){
         String[] arr = request.split(",");
         if(arr.length!=this.header.length){
@@ -61,6 +88,11 @@ public class Table {
         }
     }
 
+    /**
+     * This method allows to remove a rows of data with his index.
+     *
+     * @param number    The index of the rows with the data that the user want to remove.
+     */
     public void remove(int number){
         if(number>this.getX()){
             TestOrthogonalRangeSearching.redCode("The index must be lower than "+this.getX());
@@ -81,7 +113,10 @@ public class Table {
 
     }
 
-
+    /**
+     * getters & setters
+     *
+     */
 
 
     public int getX(){

@@ -7,9 +7,19 @@ import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+/**
+ * This class is for the frontend, it draws the table with the header and data. Furthmore, we put an additional
+ * colums for the index of each line. This makes the table more readable.
+ *
+ */
 public class FrontGrid {
 
-
+    /**
+     * It gives a GridPane with the content of the tabe given in parameter and the index column.
+     *
+     * @param t     The table that we want to display.
+     * @return      GridPane with data and index.
+     */
     public static GridPane onGridPane(Table t){
         GridPane gp = new GridPane(t.getX()+1,t.getY()+1);
 

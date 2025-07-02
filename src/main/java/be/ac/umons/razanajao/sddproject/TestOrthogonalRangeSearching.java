@@ -64,7 +64,12 @@ public class TestOrthogonalRangeSearching extends Application {
         notifGreen.setText(msg);
     }
 
-
+    /**
+     * Composition of the help scene. The text comes from other/help.txt.
+     *
+     * @param stage         The stage of the project.
+     * @param mainScene     The scene to change.
+     */
     private void helpScene(Stage stage,Scene mainScene) {
         Button back = new Button("←");
         Label label = new Label();
@@ -186,7 +191,7 @@ public class TestOrthogonalRangeSearching extends Application {
 
         importFile.setOnAction(
                 e -> {
-                    if (FileMaster.mapChooser(stage)) {
+                    if (FileMaster.importFile(stage)) {
                         dataList.add(imp);
                         data.setItems(FXCollections.observableArrayList(dataList));
                         data.getSelectionModel().selectLast();
