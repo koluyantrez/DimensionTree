@@ -43,16 +43,16 @@ public class FrontGrid {
             }
         }
 
-        for (int i = 1;i < t.getData().length; i++) {
+        for (int i = 0;i < t.getData().length; i++) {
             for (int j=0; j<t.getData()[i].length; j++) {
                 if(j==0){
-                    Label l = new Label(String.valueOf(i));
+                    Label l = new Label(String.valueOf(i+1));
                     l.setAlignment(Pos.CENTER);
                     l.setMaxWidth(Double.MAX_VALUE);
                     l.setMaxHeight(Double.MAX_VALUE);
                     GridPane.setHalignment(l, HPos.CENTER);
                     GridPane.setValignment(l, VPos.CENTER);
-                    gp.add(l, j, i);
+                    gp.add(l, j, i+1);
                 }
                 Label l = new Label(t.getData()[i][j]);
                 l.setAlignment(Pos.CENTER);
@@ -60,7 +60,7 @@ public class FrontGrid {
                 l.setMaxHeight(Double.MAX_VALUE);
                 GridPane.setHalignment(l, HPos.CENTER);
                 GridPane.setValignment(l, VPos.CENTER);
-                gp.add(l, j+1, i);
+                gp.add(l, j+1, i+1);
             }
         }
         return gp;
