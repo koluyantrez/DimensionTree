@@ -37,7 +37,7 @@ public class Table {
     public Table(String[] header, String[][] data){
         this.header=header;
         this.data=data;
-        this.x=data[0].length;
+        this.x=data.length;
         this.y=header.length;
     }
 
@@ -64,24 +64,29 @@ public class Table {
      * @param request   The new data to put in the table.
      */
     public void add(String request){
-        String[] arr = request.split(",");
-        if(arr.length!=this.header.length){
+        String[] arr = request.split("[,\\s]+");
+        if(arr.length!=6){
             TestOrthogonalRangeSearching.redCode("The query data is invalid (size)");
+            return;
         }
         try{
-            for(int i=0;i<arr.length-1;i++){
-                Integer.parseInt(arr[i]);
-            }
             int newX = this.x+1;
+            System.out.println(this.x);
             String[][] update = new String[newX][this.y];
 
             for(int i=0;i<this.x;i++) {
                 update[i] = getData()[i];
             }
-            update[this.x] = arr;
+            String[] newData= new String[this.y];
+            for (int j = 0; j < this.y; j++) {
+                newData[j] = arr[j+1];
+            }
+            update[this.x] = newData;
+
             setData(update);
             setX(newX);
-            TestOrthogonalRangeSearching.greenCode(request+" are added");
+            display();
+            TestOrthogonalRangeSearching.greenCode(arr[3]+" are added");
 
         } catch (NumberFormatException e) {
             TestOrthogonalRangeSearching.redCode("The query data is invalid (data)");

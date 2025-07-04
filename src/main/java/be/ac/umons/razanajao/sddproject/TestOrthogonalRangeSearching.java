@@ -219,6 +219,8 @@ public class TestOrthogonalRangeSearching extends Application {
                     gp.getStyleClass().add("grid");
                     sp.setContent(gp);
                     greenCode(data.getValue()+" is displayed as a table");
+                    System.out.println(t.getX());
+                    System.out.println(t.getY());
                 }
         );
 
@@ -235,10 +237,16 @@ public class TestOrthogonalRangeSearching extends Application {
         inputUser.setOnKeyPressed(
                 e -> {
                     if(e.getCode() == KeyCode.ENTER){
-                        InputMaster.FireWall(inputUser.getText());
-                        dataList = FileMaster.initDefault();
-                        data.setItems(FXCollections.observableArrayList(dataList));
-                        data.getSelectionModel().selectFirst();
+                        if(InputMaster.FireWall(inputUser.getText(), data.getValue().toString(),t)) {
+                            dataList = FileMaster.initDefault();
+                            data.setItems(FXCollections.observableArrayList(dataList));
+                            data.getSelectionModel().selectFirst();
+                        }
+                        gp = FrontGrid.onGridPane(t);
+                        gp.setHgap(80);
+                        gp.setVgap(100);
+                        gp.getStyleClass().add("grid");
+                        sp.setContent(gp);
                     }
                 }
         );

@@ -166,6 +166,7 @@ public class FileMaster {
                 return null;
 
             int x = Integer.parseInt(line);
+
             data = new String[x][];
 
             for (int i=0; i<x;i++) {
@@ -228,7 +229,7 @@ public class FileMaster {
      * @param t     The current table.
      * @param name  The name of the new file.
      */
-    public static void save(Table t, String name){
+    public static void save(Table t, String name){  //TODO
         if(!name.endsWith(".txt"))
             name = name+".txt";
         if(t==null){
@@ -270,7 +271,6 @@ public class FileMaster {
         } catch (Exception e) {
             TestOrthogonalRangeSearching.redCode("Failure of the rename");
         }
-
     }
 
 }

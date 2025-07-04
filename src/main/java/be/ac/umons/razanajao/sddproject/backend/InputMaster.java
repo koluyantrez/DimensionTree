@@ -15,10 +15,10 @@ public class InputMaster {
      *
      * @param input The user request from the TextField.
      */
-    public static void FireWall(String input){
+    public static boolean FireWall(String input, String desti, Table t){
+        boolean touch = false;
         if(input.length()>2) {
             String first = input.split(" ")[0];
-            System.out.println(first);
             switch (first){
                 case "SELECT":
                     //
@@ -27,17 +27,20 @@ public class InputMaster {
                     //
                     break;
                 case "ADD":
-                    //
+                    add(input,desti,t);
                     break;
                 case "RENAME":
                     rename(input);
+                    touch = true;
                     break;
                 default:
                     TestOrthogonalRangeSearching.redCode(first+" is invalid !");
                     break;
             }
+            return touch;
         }else{
             TestOrthogonalRangeSearching.redCode("Your request is invalid");
+            return touch;
         }
     }
 
@@ -53,6 +56,20 @@ public class InputMaster {
             FileMaster.rename(arInput[3],arInput[1]);
         }else{
             TestOrthogonalRangeSearching.redCode("Your RENAME request is invalid");
+        }
+    }
+
+    public static void add(String input, String target, Table t){
+        String desti = input.split("IN")[1].trim();
+
+        if(!desti.endsWith(".txt")){
+            desti=desti+".txt";
+        }
+
+        if(desti.equals(target)){
+            t.add(input);
+        }else{
+            TestOrthogonalRangeSearching.redCode("The file " + desti + " does not exist");
         }
     }
 
