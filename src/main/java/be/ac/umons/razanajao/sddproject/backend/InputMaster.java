@@ -59,6 +59,13 @@ public class InputMaster {
         }
     }
 
+    /**
+     * This function allows to add some data in the current table. But it does not write in the text file.
+     *
+     * @param input     The user input.
+     * @param target    The target file.
+     * @param t         The current table.
+     */
     public static void add(String input, String target, Table t){
         String desti = input.split("IN")[1].trim();
 

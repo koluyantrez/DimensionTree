@@ -256,7 +256,7 @@ public class TestOrthogonalRangeSearching extends Application {
                     FileMaster.save(t,newFileName.getText());
                     dataList = FileMaster.initDefault();
                     data.setItems(FXCollections.observableArrayList(dataList));
-                    data.getSelectionModel().selectFirst();
+                    data.getSelectionModel().selectLast();
                 }
         );
 

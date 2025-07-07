@@ -237,15 +237,16 @@ public class FileMaster {
             return;
         }
         try (FileWriter fw = new FileWriter(DATA_ACCESS+File.separator+name)) {
-            fw.write(t.getY() + '\n');
+            fw.write(t.getY() + "\n");
             for (int i = 0; i < t.getY(); i++) {
                 fw.write(t.getHeader()[i] + '\n');
             }
-            fw.write(t.getX() + '\n');
+            fw.write(t.getX() + "\n");
             for (String[] gemarie : t.getData()){
-                for (int i = 0; i < t.getX(); i++) {
-                    fw.write(gemarie[i] + '\n');
+                for (int i = 0; i < gemarie.length; i++) {
+                    fw.write(gemarie[i] + " ");
                 }
+                fw.write('\n');
             }
             TestOrthogonalRangeSearching.greenCode("Your file has created");
         } catch (IOException e) {
