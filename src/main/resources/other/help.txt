@@ -1,1 +1,26 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+DATABASE FORMAT
+It must be a text file, the case where the name already exists in the folder is not directly managed by the program. A database looks like this : (let X and Y be non-zero naturals)
+
+X
+type1
+...
+typeX
+Y
+data11 data12 ... data1X
+data21 data22 ... data2X
+dataY1 dataY2 ... dataYX
+
+In this program, we have to constrain the value of X to three : Double Double String
+
+BUTTON
+
+COMMAND
+It is possible to do some manipulation, you can write the file without the extension :
+
+Renaming => RENAME old_name TO new_name
+
+Adding => ADD data1, data2, data3 IN target_file
+
+Removing => REMOVE index_row IN target_file
+
+Selecting =>
