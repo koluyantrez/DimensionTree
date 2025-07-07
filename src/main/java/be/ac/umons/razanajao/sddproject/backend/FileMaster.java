@@ -229,7 +229,7 @@ public class FileMaster {
      * @param t     The current table.
      * @param name  The name of the new file.
      */
-    public static void save(Table t, String name){  //TODO
+    public static void save(Table t, String name){
         if(!name.endsWith(".txt"))
             name = name+".txt";
         if(t==null){

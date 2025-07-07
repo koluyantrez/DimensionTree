@@ -98,24 +98,32 @@ public class Table {
      *
      * @param number    The index of the rows with the data that the user want to remove.
      */
-    public void remove(int number){
+    public void remove(double number){
         if(number>this.getX()){
             TestOrthogonalRangeSearching.redCode("The index must be lower than "+this.getX());
+            return;
         }else{
             int newX = this.x-1;
             String[][] update = new String[newX][this.y];
+
+            if(number==this.x){
+                String removed = String.join(", ", getData()[this.x-1]);
+                TestOrthogonalRangeSearching.greenCode(removed+" are removed");
+            }
+            int p=0;
             for(int i=0;i<this.x;i++) {
-                if(i!=number) {
-                    update[i] = getData()[i];
+                if(i!=number-1) {
+                    update[i-p] = getData()[i];
                 }else{
+                    ++p;
                     String removed = String.join(", ", getData()[i]);
                     TestOrthogonalRangeSearching.greenCode(removed+" are removed");
                 }
             }
             setData(update);
             setX(newX);
+            display();
         }
-
     }
 
     /**
