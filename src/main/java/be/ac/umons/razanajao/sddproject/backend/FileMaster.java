@@ -262,6 +262,8 @@ public class FileMaster {
     public static void rename(String newName, String oldName){
         if(!newName.endsWith(".txt"))
             newName = newName+".txt";
+        if(!oldName.endsWith(".txt"))
+            oldName = oldName+".txt";
 
         Path oldFile = Paths.get(DATA_ACCESS+File.separator+oldName);
         Path newFile = Paths.get(DATA_ACCESS+File.separator+newName);
