@@ -21,6 +21,6 @@ Renaming => RENAME old_name TO new_name
 
 Adding => ADD data1, data2, data3 IN target_file
 
-Removing => REMOVE index_row IN target_file
+Removing => REMOVE index_row FROM target_file
 
 Selecting =>
