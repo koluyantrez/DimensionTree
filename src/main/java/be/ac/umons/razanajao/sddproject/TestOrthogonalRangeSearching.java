@@ -198,6 +198,12 @@ public class TestOrthogonalRangeSearching extends Application {
                     }
                 });
 
+        overw.setOnAction(
+                e -> {
+                    FileMaster.writer(t,newFileName.getText(),true);
+                }
+        );
+
         killer.setOnAction(
                 e -> {
                     String file = data.getValue().toString();
@@ -212,7 +218,6 @@ public class TestOrthogonalRangeSearching extends Application {
                 e -> {
                     sp.setVisible(true);
                     t = FileMaster.createTable(data.getValue().toString());
-                    //t.display();
                     gp = FrontGrid.onGridPane(t);
                     gp.setHgap(80);
                     gp.setVgap(100);
@@ -253,7 +258,7 @@ public class TestOrthogonalRangeSearching extends Application {
 
         save.setOnAction(
                 e -> {
-                    FileMaster.save(t,newFileName.getText());
+                    FileMaster.writer(t,newFileName.getText(),false);
                     dataList = FileMaster.initDefault();
                     data.setItems(FXCollections.observableArrayList(dataList));
                     data.getSelectionModel().selectLast();

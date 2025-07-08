@@ -200,63 +200,45 @@ public class FileMaster {
 
 
     /**
-     * It allows to overwrite a file.
+     * This method writes the content of the table to a file.
+     * It can either append or overwrite the file.
      *
-     * @param t     The table with data.
-     * @param name  The name of the file.
+     * @param t      The table with data.
+     * @param name   The name of the file.
+     * @param append True to append, false to overwrite.
      */
-    public static void overwrite(Table t, String name){
-        if(t==null){
+    public static void writer(Table t, String name, boolean append) {
+        if (t == null) {
             TestOrthogonalRangeSearching.redCode("The table does not exist. Show the data as table or tree.");
             return;
         }
-        try (FileWriter fw = new FileWriter(DATA_ACCESS+File.separator+name, false)) {
-            fw.write(t.getY() + '\n');
+
+        if (!name.endsWith(".txt")) {
+            name += ".txt";
+        }
+
+        try (FileWriter fw = new FileWriter(DATA_ACCESS + File.separator + name, append)) {
+            fw.write(t.getY() + "\n");
             for (int i = 0; i < t.getY(); i++) {
-                fw.write(t.getHeader()[i] + '\n');
+                fw.write(t.getHeader()[i] + "\n");
             }
-            fw.write(t.getX() + '\n');
-            for (String[] babeth : t.getData()){
-                for (int i = 0; i < t.getX(); i++) {
-                    fw.write(babeth[i] + '\n');
+
+            fw.write(t.getX() + "\n");
+            for (String[] row : t.getData()) {
+                for (int i = 0; i < row.length; i++) {
+                    fw.write(row[i] + " ");
                 }
+                fw.write("\n");
             }
-            TestOrthogonalRangeSearching.greenCode("Overwriting of the file done");
+
+            String action = append ? "updated" : "overwritten";
+            TestOrthogonalRangeSearching.greenCode("Your file has been "+append);
+
         } catch (IOException e) {
-            TestOrthogonalRangeSearching.redCode("Something wrong during the overwriting");
+            TestOrthogonalRangeSearching.redCode("Something went wrong during file writing.");
         }
     }
 
-    /**
-     * This function allows to create a file with the content of the current table.
-     *
-     * @param t     The current table.
-     * @param name  The name of the new file.
-     */
-    public static void save(Table t, String name){
-        if(!name.endsWith(".txt"))
-            name = name+".txt";
-        if(t==null){
-            TestOrthogonalRangeSearching.redCode("The table does not exist. Show the data as table or tree.");
-            return;
-        }
-        try (FileWriter fw = new FileWriter(DATA_ACCESS+File.separator+name)) {
-            fw.write(t.getY() + "\n");
-            for (int i = 0; i < t.getY(); i++) {
-                fw.write(t.getHeader()[i] + '\n');
-            }
-            fw.write(t.getX() + "\n");
-            for (String[] gemarie : t.getData()){
-                for (int i = 0; i < gemarie.length; i++) {
-                    fw.write(gemarie[i] + " ");
-                }
-                fw.write('\n');
-            }
-            TestOrthogonalRangeSearching.greenCode("Your file has created");
-        } catch (IOException e) {
-            TestOrthogonalRangeSearching.redCode("Something wrong during the creation");
-        }
-    }
 
     /**
      * it allows to rename a file.

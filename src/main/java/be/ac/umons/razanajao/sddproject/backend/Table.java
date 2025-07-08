@@ -71,7 +71,6 @@ public class Table {
         }
         try{
             int newX = this.x+1;
-            System.out.println(this.x);
             String[][] update = new String[newX][this.y];
 
             for(int i=0;i<this.x;i++) {
