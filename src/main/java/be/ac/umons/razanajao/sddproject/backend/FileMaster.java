@@ -232,7 +232,7 @@ public class FileMaster {
             }
 
             String action = append ? "updated" : "overwritten";
-            TestOrthogonalRangeSearching.greenCode("Your file has been "+append);
+            TestOrthogonalRangeSearching.greenCode("Your file has been "+action);
 
         } catch (IOException e) {
             TestOrthogonalRangeSearching.redCode("Something went wrong during file writing.");

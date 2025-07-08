@@ -200,7 +200,7 @@ public class TestOrthogonalRangeSearching extends Application {
 
         overw.setOnAction(
                 e -> {
-                    FileMaster.writer(t,newFileName.getText(),true);
+                    FileMaster.writer(t,data.getValue().toString(),true);
                 }
         );
 
