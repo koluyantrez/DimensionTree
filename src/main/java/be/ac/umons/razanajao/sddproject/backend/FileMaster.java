@@ -200,8 +200,7 @@ public class FileMaster {
 
 
     /**
-     * This method writes the content of the table to a file.
-     * It can either append or overwrite the file.
+     * This method writes the content of the table to a file, it can either append or overwrite the file.
      *
      * @param t      The table with data.
      * @param name   The name of the file.
