@@ -1,6 +1,5 @@
 package be.ac.umons.razanajao.sddproject.backend;
 
-
 import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
@@ -14,6 +13,11 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+/**
+ * This class are designed to manage the link between resource and code (overwrite, acces, removing, ...).
+ *
+ */
 public class FileMaster {
 
     private static final File DATA_ACCESS =

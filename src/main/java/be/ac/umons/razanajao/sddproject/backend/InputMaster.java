@@ -85,6 +85,13 @@ public class InputMaster {
         }
     }
 
+    /**
+     * This function allows to remove a row from the current table. But it does not write in the text file.
+     *
+     * @param input
+     * @param target
+     * @param t
+     */
     public static void remove(String input, String target, Table t){
         String[] parser = input.split(" ");
         if(parser.length!=4 || !parser[2].equals("FROM"))
