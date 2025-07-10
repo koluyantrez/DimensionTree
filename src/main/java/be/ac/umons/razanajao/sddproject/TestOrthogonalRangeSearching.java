@@ -27,7 +27,7 @@ public class TestOrthogonalRangeSearching extends Application {
 
     private final TextField inputUser = new TextField();
     private final TextField newFileName = new TextField("Name your file.txt");
-    private final Button importFile = new Button("import your file");
+    private final Button importFile = new Button("Import your file");
     private final Button killer = new Button("Remove this file");
     private final Button help = new Button("?");
     private final Button displayGrid = new Button("Show as a table");

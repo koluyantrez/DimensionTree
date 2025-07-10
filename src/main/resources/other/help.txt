@@ -13,6 +13,16 @@ dataY1 dataY2 ... dataYX
 In this program, we have to constrain the value of X to three : Double Double String
 
 BUTTON
+Attention, the file consider by all the items is the one in the selector !
+
+With all buttons, you can :
+    - Remove this file
+    - Show it as a table or a tree
+    - Overwrite it
+
+Of course, you can import your file. If your file is not a text file, you cannot use it. Otherwise, it will be imported but you cannot do anything with it.
+
+You can create your file from another with the arrow, it will give a text file with the content of the table showed.
 
 COMMAND
 It is possible to do some manipulation, you can write the file without the extension :
