@@ -37,8 +37,8 @@ public class TestOrthogonalRangeSearching extends Application {
     private ChoiceBox data;
 
 
-    private static final Label notifGreen = new Label("");
-    private static final Label notifRed = new Label("");
+    private static Label notifGreen;
+    private static Label notifRed;
 
     public static ArrayList<String> dataList = new ArrayList<>();
     public static String imp;
@@ -50,8 +50,11 @@ public class TestOrthogonalRangeSearching extends Application {
      * @param msg the message to display
      */
     public static void redCode(String msg) {
-        notifGreen.setText("");
+        if(notifRed == null)
+            notifRed = new Label();
         notifRed.setText(msg);
+        if(notifGreen != null)
+            notifGreen.setText("");
     }
 
     /**
@@ -60,8 +63,11 @@ public class TestOrthogonalRangeSearching extends Application {
      * @param msg the message to display
      */
     public static void greenCode(String msg) {
-        notifRed.setText("");
+        if(notifGreen == null)
+            notifGreen = new Label();
         notifGreen.setText(msg);
+        if(notifRed != null)
+            notifRed.setText("");
     }
 
     /**
@@ -242,7 +248,7 @@ public class TestOrthogonalRangeSearching extends Application {
         inputUser.setOnKeyPressed(
                 e -> {
                     if(e.getCode() == KeyCode.ENTER){
-                        if(InputMaster.FireWall(inputUser.getText(), data.getValue().toString(),t)) {
+                        if(InputMaster.fireWall(inputUser.getText(), data.getValue().toString(),t)) {
                             dataList = FileMaster.initDefault();
                             data.setItems(FXCollections.observableArrayList(dataList));
                             data.getSelectionModel().selectFirst();

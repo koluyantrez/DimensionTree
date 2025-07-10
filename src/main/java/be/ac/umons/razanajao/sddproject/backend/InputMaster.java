@@ -15,7 +15,7 @@ public class InputMaster {
      *
      * @param input The user request from the TextField.
      */
-    public static boolean FireWall(String input, String desti, Table t){
+    public static boolean fireWall(String input, String desti, Table t){
         boolean touch = false;
         if(!desti.endsWith(".txt"))
             desti=desti+".txt";
