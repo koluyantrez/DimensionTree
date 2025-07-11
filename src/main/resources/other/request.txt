@@ -1,4 +1,4 @@
 RENAME ytbgame.txt TO ytb.txt
 RENAME ytb.txt TO ytbgame.txt
 ADD 1674, 49.4, celine_dept IN ytbgame
-REMOVE 24 IN ytbgame
+REMOVE 2 FROM yehede
