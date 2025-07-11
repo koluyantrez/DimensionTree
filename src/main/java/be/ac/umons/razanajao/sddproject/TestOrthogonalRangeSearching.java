@@ -37,8 +37,8 @@ public class TestOrthogonalRangeSearching extends Application {
     private ChoiceBox data;
 
 
-    private static Label notifGreen;
-    private static Label notifRed;
+    private static Label notifGreen = new Label();
+    private static Label notifRed = new Label();
 
     public static ArrayList<String> dataList = new ArrayList<>();
     public static String imp;
@@ -50,11 +50,8 @@ public class TestOrthogonalRangeSearching extends Application {
      * @param msg the message to display
      */
     public static void redCode(String msg) {
-        if(notifRed == null)
-            notifRed = new Label();
+        notifGreen.setText("");
         notifRed.setText(msg);
-        if(notifGreen != null)
-            notifGreen.setText("");
     }
 
     /**
@@ -63,11 +60,8 @@ public class TestOrthogonalRangeSearching extends Application {
      * @param msg the message to display
      */
     public static void greenCode(String msg) {
-        if(notifGreen == null)
-            notifGreen = new Label();
+        notifRed.setText("");
         notifGreen.setText(msg);
-        if(notifRed != null)
-            notifRed.setText("");
     }
 
     /**
@@ -76,36 +70,38 @@ public class TestOrthogonalRangeSearching extends Application {
      * @param stage         The stage of the project.
      * @param mainScene     The scene to change.
      */
-    private void helpScene(Stage stage,Scene mainScene) {
+    private void helpScene(Stage stage, Scene mainScene) {
         Button back = new Button("←");
         Label label = new Label();
         label.setWrapText(true);
-        label.setMaxWidth(1300);  // Définit une largeur max pour éviter un affichage trop large
+        label.setMaxWidth(1300);  // pour éviter un affichage trop large
 
+        FileMaster.toHelp(label);  // charge le texte
 
-        FileMaster.toHelp(label);
+        // ScrollPane pour le texte
+        ScrollPane scrollPane = new ScrollPane(label);
+        scrollPane.setPrefSize(1400, 800);
+        scrollPane.setLayoutX(50);
+        scrollPane.setLayoutY(50);
+        scrollPane.setFitToWidth(true);
+        scrollPane.getStyleClass().add("help-scene");
 
-
-        back.setOnAction(e -> stage.setScene(stage.getScene()));
+        back.setOnAction(e -> stage.setScene(mainScene));
         label.getStyleClass().add("descri");
         back.getStyleClass().add("help");
-        Pane h = new Pane();
-        h.getChildren().addAll(label,back);
 
-        label.setLayoutX(50);
-        label.setLayoutY(50);
+        Pane root = new Pane();
+        root.getChildren().addAll(scrollPane, back);
 
         back.setLayoutX(1420);
         back.setLayoutY(25);
-        Scene scene2 = new Scene(h, 1500, 900);
+
+        Scene scene2 = new Scene(root, 1500, 900);
         scene2.getStylesheets().add(getClass().getResource("/css/queulorior.css").toExternalForm());
 
         stage.setScene(scene2);
-        back.setOnAction(
-                e -> {
-                    stage.setScene(mainScene);
-                });
     }
+
 
 
     @Override
@@ -120,6 +116,7 @@ public class TestOrthogonalRangeSearching extends Application {
         sp.setLayoutX(800);
         sp.setLayoutY(50);
         sp.setContent(gp);
+        sp.getStyleClass().add("table-scroll");
 
 
         dataList = FileMaster.initDefault();

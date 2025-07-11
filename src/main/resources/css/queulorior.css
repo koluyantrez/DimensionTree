@@ -132,13 +132,28 @@
 }
 
 
-.scroll-pane {
+.table-scroll {
     -fx-background: midnightblue;
     -fx-background-color: midnightblue;
     -fx-padding: 0;
     -fx-border-color: darkslateblue;
     -fx-border-width: 3px;
 }
+
+.help-scene {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.help-scene .viewport {
+    -fx-background-color: transparent;
+}
+
+.help-scene .content {
+    -fx-background-color: transparent;
+}
+
 
 .grid {
     -fx-font-size: 25px;
