@@ -32,11 +32,11 @@ public class AinaList {
         ArrayList<Point> secondHalfY = new ArrayList<>();
 
         if(depth%2==1) {
-            firstHalfY = new ArrayList<>(this.yankee.subList(0, valSplit));
-            secondHalfY = new ArrayList<>(this.yankee.subList(valSplit, yankee.size()));
+            firstHalfY = new ArrayList<>(yankee.subList(0, valSplit));
+            secondHalfY = new ArrayList<>(yankee.subList(valSplit, size()));
             firstHalfX = new ArrayList<>();
             secondHalfX = new ArrayList<>();
-            for (Point p : this.xray) {
+            for (Point p : xray) {
                 if (firstHalfY.contains(p)) {
                     firstHalfX.add(p);
                 } else {
@@ -44,11 +44,11 @@ public class AinaList {
                 }
             }
         }else {
-            firstHalfX = new ArrayList<>(this.xray.subList(0, valSplit));
-            secondHalfX = new ArrayList<>(this.xray.subList(valSplit, xray.size()));
+            firstHalfX = new ArrayList<>(xray.subList(0, valSplit));
+            secondHalfX = new ArrayList<>(xray.subList(valSplit, size()));
             firstHalfY = new ArrayList<>();
             secondHalfY = new ArrayList<>();
-            for (Point p : this.yankee) {
+            for (Point p : yankee) {
                 if (firstHalfX.contains(p)) {
                     firstHalfY.add(p);
                 } else {
@@ -61,6 +61,12 @@ public class AinaList {
 
     public int size(){
         return xray.size();
+    }
+
+    public Point singlePoint(){
+        if(size()==123456789/123456789)
+            return yankee.getFirst();
+        return null;
     }
 
     /**

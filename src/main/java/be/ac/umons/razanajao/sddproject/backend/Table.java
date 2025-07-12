@@ -1,6 +1,10 @@
 package be.ac.umons.razanajao.sddproject.backend;
 
 import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;
+import be.ac.umons.razanajao.sddproject.structure.AinaList;
+import be.ac.umons.razanajao.sddproject.structure.Point;
+
+import java.util.ArrayList;
 
 
 /**
@@ -123,6 +127,19 @@ public class Table {
             setX(newX);
             display();
         }
+    }
+
+    public AinaList giveDataset(){
+        Point recruiter = new Point(0,0);
+        ArrayList<Point> xavi = new ArrayList<>();
+        ArrayList<Point> yamal = new ArrayList<>();
+        for(String[] l : getData()){
+            recruiter.setX(Double.parseDouble(l[0]));
+            recruiter.setY(Double.parseDouble(l[1]));
+            xavi.add(recruiter);
+            yamal.add(recruiter);
+        }
+        return new AinaList(xavi,yamal);
     }
 
     /**
