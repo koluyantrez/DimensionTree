@@ -2,7 +2,7 @@
 weight
 height
 username
-18
+19
 48 1.52 leana
 59 1.83 bella
 45 1.57 kayla
@@ -21,3 +21,4 @@ username
 55 1.78 alexa
 70 1.65 xev
 84 170 adaline
+49 1.62 elles
