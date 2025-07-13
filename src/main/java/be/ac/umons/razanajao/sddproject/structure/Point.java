@@ -29,10 +29,12 @@ public class Point{
      * @return 1 if its x-coordinate is greater, -1 if smaller, or comparison by y-coordinate if x-coordinate is equal.
      */
     public int compareToX(Point p){
+        if(samePoint(p)){
+            return 0;
+        }
         if(this.equalsX(p)){
             return this.compareToY(p);
-        }
-        if(this.getX() > p.getX()){
+        }else if(this.getX() > p.getX()){
             return 1;
         }else{
             return -1;
@@ -47,10 +49,12 @@ public class Point{
      * @return 1 if its y-coordinate is greater, -1 if smaller, or comparison by x-coordinate if y-coordinate is equal.
      */
     public int compareToY(Point p){
+        if(samePoint(p)){
+            return 0;
+        }
         if(this.equalsY(p)){
             return this.compareToX(p);
-        }
-        if(this.getY() > p.getY()){
+        }else if(this.getY() > p.getY()){
             return 1;
         }else{
             return -1;
@@ -75,6 +79,10 @@ public class Point{
      */
     public boolean equalsY(Point p) {
         return Math.abs(this.y - p.y) < ACCURACY;
+    }
+
+    public boolean samePoint(Point p){
+        return equalsX(p) && equalsY(p);
     }
 
     @Override

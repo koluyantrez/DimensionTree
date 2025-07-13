@@ -26,10 +26,10 @@ public class AinaList {
         }
 
         int valSplit = (int) Math.ceil(xray.size()/2);
-        ArrayList<Point> firstHalfX = new ArrayList<>();
-        ArrayList<Point> secondHalfX = new ArrayList<>();
-        ArrayList<Point> firstHalfY = new ArrayList<>();
-        ArrayList<Point> secondHalfY = new ArrayList<>();
+        ArrayList<Point> firstHalfX;
+        ArrayList<Point> secondHalfX;
+        ArrayList<Point> firstHalfY;
+        ArrayList<Point> secondHalfY;
 
         if(depth%2==1) {
             firstHalfY = new ArrayList<>(yankee.subList(0, valSplit));
