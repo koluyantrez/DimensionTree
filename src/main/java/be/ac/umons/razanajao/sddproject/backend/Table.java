@@ -130,12 +130,11 @@ public class Table {
     }
 
     public AinaList giveDataset(){
-        Point recruiter = new Point(0,0);
+        Point recruiter;
         ArrayList<Point> xavi = new ArrayList<>();
         ArrayList<Point> yamal = new ArrayList<>();
         for(String[] l : getData()){
-            recruiter.setX(Double.parseDouble(l[0]));
-            recruiter.setY(Double.parseDouble(l[1]));
+            recruiter = new Point(Double.parseDouble(l[0]),Double.parseDouble(l[1]));
             xavi.add(recruiter);
             yamal.add(recruiter);
         }

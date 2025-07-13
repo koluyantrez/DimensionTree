@@ -38,8 +38,66 @@ public class Amatest {
     void checkGoodTableFromResource(){
         assertTrue(t.getY()==3);
         assertTrue(3==t.getHeader().length);
-        assertTrue(t.getX()==10);
-        assertTrue(t.getData().length==10);
+        assertTrue(t.getX()==19);
+        assertTrue(t.getData().length==19);
+    }
+
+    @Test
+    void allDataFromTableInAinaList(){
+        AinaList al = t.giveDataset();
+        assertTrue(al.size()==t.getX());
+    }
+
+    @Test
+    void checkSizeAfterSplit(){
+        AinaList al = t.giveDataset();
+        AinaList[] recover = al.split(8);
+        assertTrue(recover[0].size()==10);
+    }
+
+    @Test
+    void checkAllPointInFirstPart(){
+        AinaList al = t.giveDataset();
+        AinaList firstPart = al.split(8)[0];
+
+        boolean answer1 = true;
+        for(Point p : firstPart.getXray()){
+            if(!firstPart.getYankee().contains(p)){
+                answer1 = false;
+                break;
+            }
+        }
+        boolean answer2 = true;
+        for(Point p : firstPart.getYankee()){
+            if(!firstPart.getXray().contains(p)){
+                answer2 = false;
+                break;
+            }
+        }
+        assertTrue(answer1 && answer2);
+    }
+
+    @Test
+    void checkAllPointInSecondPart() {
+        AinaList al = t.giveDataset();
+        AinaList secondPart = al.split(3)[1];
+
+        boolean answer1 = true;
+        for(Point p : secondPart.getXray()){
+            if(!secondPart.getYankee().contains(p)){
+                answer1 = false;
+                break;
+            }
+        }
+        boolean answer2 = true;
+        for(Point p : secondPart.getYankee()){
+            if(!secondPart.getXray().contains(p)){
+                answer2 = false;
+                break;
+            }
+        }
+        al.display();
+        assertTrue(answer1 && answer2);
     }
 
 }
