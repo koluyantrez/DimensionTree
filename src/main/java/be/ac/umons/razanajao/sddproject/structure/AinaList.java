@@ -1,9 +1,6 @@
 package be.ac.umons.razanajao.sddproject.structure;
 
 
-import be.ac.umons.razanajao.sddproject.backend.FileMaster;
-import be.ac.umons.razanajao.sddproject.backend.Table;
-
 import java.util.ArrayList;
 
 public class AinaList {
@@ -105,13 +102,6 @@ public class AinaList {
 
     public void setYankee(ArrayList<Point> yankee) {
         this.yankee = yankee;
-    }
-
-    public static void main(String[] args){
-        Table t = FileMaster.createTable("for_test.txt");
-        AinaList al = t.giveDataset();
-        al.split(3)[0].display();
-        al.split(3)[1].display();
     }
 
 }
