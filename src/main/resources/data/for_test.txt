@@ -2,10 +2,11 @@
 weight
 height
 username
-10
+18
 48 1.52 leana
 59 1.83 bella
 45 1.57 kayla
+100 1.6 rider
 52 1.65 diana
 50 1.77 comer
 64 1.70 molly
@@ -13,3 +14,10 @@ username
 40 1.57 luna
 70 1.67 lika
 46 1.62 lana
+113 1.52 katte
+54 1.57 melody
+59 1.7 gabbie
+49 1.63 sybil
+55 1.78 alexa
+70 1.65 xev
+84 170 adaline
