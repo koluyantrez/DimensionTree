@@ -11,7 +11,7 @@ public class Point{
     private final double ACCURACY = 10e-4;
 
     /**
-     * initializes a point with the given x-coordinate and y-coordinate
+     * Initializes a point with the given x-coordinate and y-coordinate
      *
      * @param x The x-coordinate of the point.
      * @param y The y-coordinate of the point.
@@ -81,10 +81,21 @@ public class Point{
         return Math.abs(this.y - p.y) < ACCURACY;
     }
 
+    /**
+     *  Make x-coordinate and y-coordinate comparaison with the given point following the accuracy.
+     *
+     * @param p The point to compare with.
+     * @return  True if they are same coordinate according to a certain precision.
+     */
     public boolean equals(Point p){
         return equalsX(p) && equalsY(p);
     }
 
+    /**
+     * It gives the string format of a point.
+     *
+     * @return String -> (x;y)
+     */
     @Override
     public String toString(){
         return "("+x + ";" + y+")";

@@ -129,6 +129,13 @@ public class Table {
         }
     }
 
+
+    /**
+     * This method initializes an AinaList with the current content. It only takes the first two as x-coordinate and
+     * y-coordinate.
+     *
+     * @return AinaList with the current content
+     */
     public AinaList giveDataset(){
         Point recruiter;
         ArrayList<Point> xavi = new ArrayList<>();
