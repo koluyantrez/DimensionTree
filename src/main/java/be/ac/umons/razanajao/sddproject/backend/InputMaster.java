@@ -1,6 +1,6 @@
 package be.ac.umons.razanajao.sddproject.backend;
 
-import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;
+import be.ac.umons.razanajao.sddproject.frontend.Hermes;
 
 /**
  * This class manage the user request. We consider that the user are allowed to remove, rename, select et put some
@@ -36,12 +36,12 @@ public class InputMaster {
                     touch = true;
                     break;
                 default:
-                    TestOrthogonalRangeSearching.redCode(first+" is invalid !");
+                    Hermes.red(first+" is invalid !");
                     break;
             }
             return touch;
         }else{
-            TestOrthogonalRangeSearching.redCode("Your request is invalid");
+            Hermes.red("Your request is invalid");
             return touch;
         }
     }
@@ -57,7 +57,7 @@ public class InputMaster {
         if(arInput[2].equals("TO") && arInput.length==4){
             FileMaster.rename(arInput[3],arInput[1]);
         }else{
-            TestOrthogonalRangeSearching.redCode("Your RENAME request is invalid");
+            Hermes.red("Your RENAME request is invalid");
         }
     }
 
@@ -72,7 +72,7 @@ public class InputMaster {
 
         String desti = input.split("IN")[1].trim();
         if(!input.split("IN")[0].trim().endsWith("IN"))
-            TestOrthogonalRangeSearching.redCode("Syntax error : it must be IN");
+            Hermes.red("Syntax error : it must be IN");
 
         if(!desti.endsWith(".txt")){
             desti=desti+".txt";
@@ -81,7 +81,7 @@ public class InputMaster {
         if(desti.equals(target)){
             t.add(input);
         }else{
-            TestOrthogonalRangeSearching.redCode("The file " + desti + " does not exist");
+            Hermes.red("The file " + desti + " does not exist");
         }
     }
 
@@ -95,7 +95,7 @@ public class InputMaster {
     public static void remove(String input, String target, Table t){
         String[] parser = input.split(" ");
         if(parser.length!=4 || !parser[2].equals("FROM"))
-            TestOrthogonalRangeSearching.redCode("Syntax error, please read the help");
+            Hermes.red("Syntax error, please read the help");
 
         if(!parser[parser.length-1].endsWith(".txt")){
             parser[parser.length-1]=parser[parser.length-1]+".txt";
@@ -104,7 +104,7 @@ public class InputMaster {
         try{
             t.remove(Double.parseDouble(parser[1]));
         } catch (NumberFormatException e) {
-            TestOrthogonalRangeSearching.redCode("Syntax error : number");
+            Hermes.red("Syntax error : number");
         }
     }
 }

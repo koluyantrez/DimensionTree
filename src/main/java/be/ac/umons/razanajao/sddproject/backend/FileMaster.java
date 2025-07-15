@@ -1,6 +1,7 @@
 package be.ac.umons.razanajao.sddproject.backend;
 
 import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;
+import be.ac.umons.razanajao.sddproject.frontend.Hermes;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -77,13 +78,13 @@ public class FileMaster {
                 Path destination = new File(DATA_ACCESS, selectedFile.getName()).toPath();
                 Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
                 TestOrthogonalRangeSearching.imp = selectedFile.getName();
-                TestOrthogonalRangeSearching.greenCode("Your file called "+selectedFile.getName()+" was successfully added");
+                Hermes.green("Your file called "+selectedFile.getName()+" was successfully added");
                 return true;
             } catch (IOException e) {
-                TestOrthogonalRangeSearching.redCode("The import has failed");
+                Hermes.red("The import has failed");
             }
         } else {
-            TestOrthogonalRangeSearching.redCode("Your file was not detected, it must be a text file.");
+            Hermes.red("Your file was not detected, it must be a text file.");
             return false;
         }
         return false;
@@ -99,7 +100,7 @@ public class FileMaster {
         try {
             if (target.isFile()) Files.delete(target.toPath());
         } catch (IOException e) {
-            TestOrthogonalRangeSearching.redCode("No such file found");
+            Hermes.red("No such file found");
         }
     }
 
@@ -139,9 +140,9 @@ public class FileMaster {
                 }
             }
         } catch (IOException e) {
-            TestOrthogonalRangeSearching.redCode("Something wrong with the header");
+            Hermes.red("Something wrong with the header");
         } catch (NumberFormatException e){
-            TestOrthogonalRangeSearching.redCode("Something wrong with the number indication");
+            Hermes.red("Something wrong with the number indication");
         }
         return header;
     }
@@ -181,9 +182,9 @@ public class FileMaster {
             }
 
         } catch (IOException e) {
-            TestOrthogonalRangeSearching.redCode("Something wrong with the file "+name);
+            Hermes.red("Something wrong with the file "+name);
         } catch (NumberFormatException e) {
-            TestOrthogonalRangeSearching.redCode("Something wrong with the number indication");
+            Hermes.red("Something wrong with the number indication");
         }
         return data;
     }
@@ -208,7 +209,7 @@ public class FileMaster {
      */
     public static void writer(Table t, String name, boolean append) {
         if (t == null) {
-            TestOrthogonalRangeSearching.redCode("The table does not exist. Show the data as table or tree.");
+            Hermes.red("The table does not exist. Show the data as table or tree.");
             return;
         }
 
@@ -231,10 +232,10 @@ public class FileMaster {
             }
 
             String action = append ? "updated" : "overwritten";
-            TestOrthogonalRangeSearching.greenCode("Your file has been "+action);
+            Hermes.green("Your file has been "+action);
 
         } catch (IOException e) {
-            TestOrthogonalRangeSearching.redCode("Something went wrong during file writing.");
+            Hermes.red("Something went wrong during file writing.");
         }
     }
 
@@ -255,9 +256,9 @@ public class FileMaster {
         Path newFile = Paths.get(DATA_ACCESS+File.separator+newName);
         try {
             Files.move(oldFile, newFile);
-            TestOrthogonalRangeSearching.greenCode("The file has been renamed successfully");
+            Hermes.green("The file has been renamed successfully");
         } catch (Exception e) {
-            TestOrthogonalRangeSearching.redCode("Failure of the rename");
+            Hermes.red("Failure of the rename");
         }
     }
 

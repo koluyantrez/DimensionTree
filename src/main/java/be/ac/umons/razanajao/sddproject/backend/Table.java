@@ -1,6 +1,6 @@
 package be.ac.umons.razanajao.sddproject.backend;
 
-import be.ac.umons.razanajao.sddproject.TestOrthogonalRangeSearching;
+import be.ac.umons.razanajao.sddproject.frontend.Hermes;
 import be.ac.umons.razanajao.sddproject.structure.AinaList;
 import be.ac.umons.razanajao.sddproject.structure.Point;
 
@@ -70,7 +70,7 @@ public class Table {
     public void add(String request){
         String[] arr = request.split("[,\\s]+");
         if(arr.length!=6){
-            TestOrthogonalRangeSearching.redCode("The query data is invalid (size)");
+            Hermes.green("The query data is invalid (size)");
             return;
         }
         try{
@@ -89,10 +89,10 @@ public class Table {
             setData(update);
             setX(newX);
             display();
-            TestOrthogonalRangeSearching.greenCode(arr[3]+" are added");
+            Hermes.green(arr[3]+" are added");
 
         } catch (NumberFormatException e) {
-            TestOrthogonalRangeSearching.redCode("The query data is invalid (data)");
+            Hermes.green("The query data is invalid (data)");
         }
     }
 
@@ -103,7 +103,7 @@ public class Table {
      */
     public void remove(double number){
         if(number>this.getX()){
-            TestOrthogonalRangeSearching.redCode("The index must be lower than "+this.getX());
+            Hermes.green("The index must be lower than "+this.getX());
             return;
         }else{
             int newX = this.x-1;
@@ -111,7 +111,7 @@ public class Table {
 
             if(number==this.x){
                 String removed = String.join(", ", getData()[this.x-1]);
-                TestOrthogonalRangeSearching.greenCode(removed+" are removed");
+                Hermes.green(removed+" are removed");
             }
             int p=0;
             for(int i=0;i<this.x;i++) {
@@ -120,7 +120,7 @@ public class Table {
                 }else{
                     ++p;
                     String removed = String.join(", ", getData()[i]);
-                    TestOrthogonalRangeSearching.greenCode(removed+" are removed");
+                    Hermes.green(removed+" are removed");
                 }
             }
             setData(update);
