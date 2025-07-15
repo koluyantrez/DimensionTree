@@ -49,6 +49,29 @@ public class Amatest {
     }
 
     @Test
+    void checkOrderData(){
+        AinaList al = t.giveDataset();
+
+        boolean okX = true;
+        boolean okY = true;
+
+
+        for (int i=0;i<al.size()-1;i++) {
+            if(al.getXray().get(i).compareToX(al.getXray().get(i+1))>0) {
+                okX = false;
+                break;
+            }
+            if(al.getYankee().get(i).compareToY(al.getYankee().get(i+1))>0) {
+                okY = false;
+                break;
+            }
+        }
+
+        assertTrue(okX && okY);
+
+    }
+
+    @Test
     void checkSizeAfterSplit(){
         AinaList al = t.giveDataset();
         AinaList[] recover = al.split(8);
