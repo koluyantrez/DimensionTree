@@ -44,13 +44,13 @@ public class Amatest {
 
     @Test
     void allDataFromTableInAinaList(){
-        AinaList al = t.giveDataset();
+        CoupleList al = t.giveDataset();
         assertTrue(al.size()==t.getX());
     }
 
     @Test
     void checkOrderData(){
-        AinaList al = t.giveDataset();
+        CoupleList al = t.giveDataset();
 
         boolean okX = true;
         boolean okY = true;
@@ -73,15 +73,15 @@ public class Amatest {
 
     @Test
     void checkSizeAfterSplit(){
-        AinaList al = t.giveDataset();
-        AinaList[] recover = al.split(8);
+        CoupleList al = t.giveDataset();
+        CoupleList[] recover = al.split(8);
         assertTrue(recover[0].size()==10);
     }
 
     @Test
     void checkAllPointInFirstPart(){
-        AinaList al = t.giveDataset();
-        AinaList firstPart = al.split(8)[0];
+        CoupleList al = t.giveDataset();
+        CoupleList firstPart = al.split(8)[0];
 
         boolean answer1 = true;
         for(Point p : firstPart.getXray()){
@@ -102,8 +102,8 @@ public class Amatest {
 
     @Test
     void checkAllPointInSecondPart() {
-        AinaList al = t.giveDataset();
-        AinaList secondPart = al.split(3)[1];
+        CoupleList al = t.giveDataset();
+        CoupleList secondPart = al.split(3)[1];
 
         boolean answer1 = true;
         for(Point p : secondPart.getXray()){

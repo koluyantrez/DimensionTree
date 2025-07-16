@@ -1,7 +1,7 @@
 package be.ac.umons.razanajao.sddproject.backend;
 
 import be.ac.umons.razanajao.sddproject.frontend.Hermes;
-import be.ac.umons.razanajao.sddproject.structure.AinaList;
+import be.ac.umons.razanajao.sddproject.structure.CoupleList;
 import be.ac.umons.razanajao.sddproject.structure.Point;
 
 import java.util.ArrayList;
@@ -136,7 +136,7 @@ public class Table {
      *
      * @return AinaList with the current content
      */
-    public AinaList giveDataset(){
+    public CoupleList giveDataset(){
         Point recruiter;
         ArrayList<Point> xavi = new ArrayList<>();
         ArrayList<Point> yamal = new ArrayList<>();
@@ -145,7 +145,7 @@ public class Table {
             xavi.add(recruiter);
             yamal.add(recruiter);
         }
-        return new AinaList(xavi,yamal);
+        return new CoupleList(xavi,yamal);
     }
 
     /**

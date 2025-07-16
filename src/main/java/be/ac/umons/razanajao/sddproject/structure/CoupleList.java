@@ -1,6 +1,5 @@
 package be.ac.umons.razanajao.sddproject.structure;
 
-import java.beans.ConstructorProperties;
 import java.util.ArrayList;
 
 
@@ -9,7 +8,7 @@ import java.util.ArrayList;
  * x-coordinates and the second is ordered according to the y-coordinates.
  *
  */
-public class AinaList {
+public class CoupleList {
 
     private ArrayList<Point> xray;
     private ArrayList<Point> yankee;
@@ -20,7 +19,7 @@ public class AinaList {
      * @param xray      ArrayList of Point sorted by x-coordinate.
      * @param yankee    ArrayList of Point sorted by y-coordinate.
      */
-    public AinaList(ArrayList<Point> xray, ArrayList<Point> yankee){
+    public CoupleList(ArrayList<Point> xray, ArrayList<Point> yankee){
         this.xray=xray;
         this.yankee=yankee;
         sort();
@@ -42,10 +41,10 @@ public class AinaList {
      * @param depth     The current depth.
      * @return          An array of AinaList with the two parts of the division of the original list.
      */
-    public AinaList[] split(int depth){
+    public CoupleList[] split(int depth){
 
         if(size()==1){
-            return new AinaList[]{new AinaList(xray,yankee)};
+            return new CoupleList[]{new CoupleList(xray,yankee)};
         }
 
         int valSplit = (int) Math.ceil(xray.size()/2.0);
@@ -80,7 +79,7 @@ public class AinaList {
                 }
             }
         }
-        return new AinaList[]{new AinaList(firstHalfX,firstHalfY),new AinaList(secondHalfX,secondHalfY)};
+        return new CoupleList[]{new CoupleList(firstHalfX,firstHalfY),new CoupleList(secondHalfX,secondHalfY)};
     }
 
     /**
