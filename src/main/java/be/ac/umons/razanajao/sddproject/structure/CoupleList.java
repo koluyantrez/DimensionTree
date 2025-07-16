@@ -12,6 +12,12 @@ public class CoupleList {
 
     private ArrayList<Point> xray;
     private ArrayList<Point> yankee;
+    private CoupleList fi,se;
+
+    private ArrayList<Point> firstHalfX;
+    private ArrayList<Point> secondHalfX;
+    private ArrayList<Point> firstHalfY;
+    private ArrayList<Point> secondHalfY;
 
     /**
      * Composed by two arrayList following x-axis and y-axis.
@@ -41,18 +47,16 @@ public class CoupleList {
      * @param depth     The current depth.
      * @return          An array of AinaList with the two parts of the division of the original list.
      */
-    public CoupleList[] split(int depth){
-
+    public void split(int depth){
+        if(secondHalfY!=null){
+            return;
+        }
         if(size()==1){
-            return new CoupleList[]{new CoupleList(xray,yankee)};
+            return;
         }
 
         int valSplit = (int) Math.ceil(xray.size()/2.0);
 
-        ArrayList<Point> firstHalfX;
-        ArrayList<Point> secondHalfX;
-        ArrayList<Point> firstHalfY;
-        ArrayList<Point> secondHalfY;
 
         if(depth%2==1) {
             firstHalfY = new ArrayList<>(yankee.subList(0, valSplit));
@@ -79,7 +83,8 @@ public class CoupleList {
                 }
             }
         }
-        return new CoupleList[]{new CoupleList(firstHalfX,firstHalfY),new CoupleList(secondHalfX,secondHalfY)};
+        fi = new CoupleList(firstHalfX,firstHalfY);
+        se = new CoupleList(secondHalfX,secondHalfY);
     }
 
     /**
@@ -140,5 +145,30 @@ public class CoupleList {
     public void setYankee(ArrayList<Point> yankee) {
         this.yankee = yankee;
     }
+
+    public ArrayList<Point> getFirstHalfX() {
+        return firstHalfX;
+    }
+
+    public ArrayList<Point> getSecondHalfX() {
+        return secondHalfX;
+    }
+
+    public ArrayList<Point> getFirstHalfY() {
+        return firstHalfY;
+    }
+
+    public ArrayList<Point> getSecondHalfY() {
+        return secondHalfY;
+    }
+
+    public CoupleList getFirst() {
+        return fi;
+    }
+
+    public CoupleList getSecond() {
+        return se;
+    }
+
 
 }

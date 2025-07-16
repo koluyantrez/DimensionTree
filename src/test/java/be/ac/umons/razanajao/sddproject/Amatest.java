@@ -74,14 +74,16 @@ public class Amatest {
     @Test
     void checkSizeAfterSplit(){
         CoupleList al = t.giveDataset();
-        CoupleList[] recover = al.split(8);
-        assertTrue(recover[0].size()==10);
+        al.split(420);
+        assertTrue(al.getFirstHalfY().size()==10);
     }
 
     @Test
     void checkAllPointInFirstPart(){
         CoupleList al = t.giveDataset();
-        CoupleList firstPart = al.split(8)[0];
+        al.split(98);
+        CoupleList firstPart = al.getFirst();
+
 
         boolean answer1 = true;
         for(Point p : firstPart.getXray()){
@@ -103,7 +105,8 @@ public class Amatest {
     @Test
     void checkAllPointInSecondPart() {
         CoupleList al = t.giveDataset();
-        CoupleList secondPart = al.split(3)[1];
+        al.split(141);
+        CoupleList secondPart = al.getSecond();
 
         boolean answer1 = true;
         for(Point p : secondPart.getXray()){
