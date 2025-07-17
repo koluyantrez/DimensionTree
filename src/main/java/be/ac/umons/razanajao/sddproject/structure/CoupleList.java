@@ -162,12 +162,31 @@ public class CoupleList {
         return secondHalfY;
     }
 
+    /**
+     * Return the first part of the main split
+     *
+     * @return  CoupleList with all point smaller than the cut point included.
+     */
     public CoupleList getFirst() {
         return fi;
     }
 
+    /**
+     * Return the second part of the main split
+     *
+     * @return  CoupleList with all point larger than the cut point.
+     */
     public CoupleList getSecond() {
         return se;
+    }
+
+    public Point getCut(int depth){
+        int id = (int) Math.ceil(xray.size()/2.0);
+        if(depth%2==0){
+            return xray.get(id);
+        }else{
+            return yankee.get(id);
+        }
     }
 
 
