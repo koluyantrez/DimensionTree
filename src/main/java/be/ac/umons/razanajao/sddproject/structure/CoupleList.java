@@ -98,7 +98,7 @@ public class CoupleList {
     }
 
     /**
-     * It gives the only Point from the ArrayList.
+     * If there is anly one data in the CoupleList, this method gives this last data.
      *
      * @return  Point the only data from the ArrayList.
      */
