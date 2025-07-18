@@ -12,7 +12,7 @@ public class InputMaster {
     private final String NUMBER = "-?\\d+(\\.\\d+)?";
     private final String CONDITION = "("+NAME+"\\s*(>=|<=)\\s*"+NUMBER+"|"+NAME+"\\s+in\\s+\\["+NUMBER+",\\s*"+NUMBER+"\\])";
     private final String REGEX_SELECTOR = "^SELECT\\s+"+NAME+
-                                          "(\\s+,\\s*"+NAME+")?"+
+                                          "(\\s*,\\s*"+NAME+")?"+
                                           "\\s+FROM\\s+"+NAME+
                                           "\\s+WHERE\\s+"+CONDITION+
                                           "(\\s+AND\\s+"+CONDITION+")?$";
