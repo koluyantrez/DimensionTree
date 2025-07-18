@@ -2,12 +2,14 @@ package be.ac.umons.razanajao.sddproject.structure;
 
 public class KdTree<D> extends BSTree<D>{
 
+    private final KdTree<D> krRoot;
+
     public KdTree() {
-        super();
+        this.krRoot = new KdTree<D>();
     }
 
-    public KdTree(D d, KdTree<D> l, KdTree<D> r) {
-        super(d, l, r);
+    public KdTree(CoupleList d, KdTree<D> l, KdTree<D> r){
+        this.krRoot = new KdTree<D>();
     }
 
     // Redefine to avoid constant casting
@@ -22,7 +24,7 @@ public class KdTree<D> extends BSTree<D>{
 
     public KdTree buildKdTree(CoupleList cl, int depth){
         if(cl.size()==1){
-            return new KdTree(cl.singlePoint(),null,null);
+            return new KdTree(cl,null,null);
         }else{
             cl.split(depth);
             KdTree<D> kdtLeft = buildKdTree(cl.getFirst(), 1+depth);
