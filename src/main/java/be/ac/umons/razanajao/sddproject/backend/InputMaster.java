@@ -8,6 +8,14 @@ import be.ac.umons.razanajao.sddproject.frontend.Hermes;
  *
  */
 public class InputMaster {
+    private final String NAME = "[a-zA-Z0-9_]+";
+    private final String NUMBER = "-?\\d+(\\.\\d+)?";
+    private final String CONDITION = "("+NAME+"\\s*(>=|<=)\\s*"+NUMBER+"|"+NAME+"\\s+in\\s+\\["+NUMBER+",\\s*"+NUMBER+"\\])";
+    private final String REGEX_SELECTOR = "^SELECT\\s+"+NAME+
+                                          "(\\s+,\\s*"+NAME+")?"+
+                                          "\\s+FROM\\s+"+NAME+
+                                          "\\s+WHERE\\s+"+CONDITION+
+                                          "(\\s+AND\\s+"+CONDITION+")?$";
 
     /**
      * This function is the first step of the input analysis. It checks the first word and apply the good function if
