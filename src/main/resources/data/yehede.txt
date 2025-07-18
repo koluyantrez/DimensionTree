@@ -9,4 +9,3 @@ department
 4 176.33 physique
 4 181.13 biologie
 1 164.63 chimie
-
