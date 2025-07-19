@@ -5,6 +5,8 @@ import be.ac.umons.razanajao.sddproject.backend.FileMaster;
 import be.ac.umons.razanajao.sddproject.backend.InputMaster;
 import be.ac.umons.razanajao.sddproject.backend.Table;
 import be.ac.umons.razanajao.sddproject.frontend.FrontGrid;
+import be.ac.umons.razanajao.sddproject.structure.CoupleList;
+import be.ac.umons.razanajao.sddproject.structure.KdTree;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
@@ -24,6 +26,7 @@ public class TestOrthogonalRangeSearching extends Application {
     private final ScrollPane sp = new ScrollPane();
     GridPane gp = new GridPane();
     Table t;
+    KdTree<CoupleList> kdt = new KdTree<>();
 
     private final TextField inputUser = new TextField();
     private final TextField newFileName = new TextField("Name your file.txt");
@@ -267,6 +270,17 @@ public class TestOrthogonalRangeSearching extends Application {
                     data.getSelectionModel().selectLast();
                 }
         );
+
+        displayTree.setOnAction(
+                e -> {
+                    CoupleList fromTable = t.giveDataset();
+                    kdt = kdt.buildKdTree(fromTable,0);
+                    kdt.print();
+                    //fromTable.display();
+                }
+        );
+
+
 
         scene.getStylesheets().add(getClass().getResource("/css/queulorior.css").toExternalForm());
         stage.setScene(scene);

@@ -66,8 +66,9 @@ public class Tree<D> {
 //affichage recursif
 	public void print() {
 		if (!isEmpty()) {
-			left.print();
 			System.out.println(data);
+			System.out.println();
+			left.print();
 			right.print();
 		}
 	}	

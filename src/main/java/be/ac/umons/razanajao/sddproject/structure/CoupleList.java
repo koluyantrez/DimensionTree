@@ -125,6 +125,20 @@ public class CoupleList {
         System.out.println();
     }
 
+    @Override
+    public String toString(){
+        String out = "Point by x-coord : \n";
+        for(Point p : xray){
+            out = out+p.toString() + "|";
+        }
+        out = out+'\n';
+        out = out+"Point by y-coord : \n";
+        for(Point p : yankee){
+            out = out+p.toString() + "|";
+        }
+        return out;
+    }
+
     /**
      * getters & setters
      *
