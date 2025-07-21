@@ -8,10 +8,10 @@ import be.ac.umons.razanajao.sddproject.frontend.Hermes;
  *
  */
 public class InputMaster {
-    private final String NAME = "[a-zA-Z0-9_]+";
-    private final String NUMBER = "-?\\d+(\\.\\d+)?";
-    private final String CONDITION = "("+NAME+"\\s*(>=|<=)\\s*"+NUMBER+"|"+NAME+"\\s+in\\s+\\["+NUMBER+",\\s*"+NUMBER+"\\])";
-    private final String REGEX_SELECTOR = "^SELECT\\s+"+NAME+
+    private static final String NAME = "[a-zA-Z0-9_]+";
+    private static final String NUMBER = "-?\\d+(\\.\\d+)?";
+    private static final String CONDITION = "("+NAME+"\\s*(>=|<=)\\s*"+NUMBER+"|"+NAME+"\\s+in\\s+\\["+NUMBER+",\\s*"+NUMBER+"\\])";
+    private static final String REGEX_SELECTOR = "^SELECT\\s+"+NAME+
                                           "(\\s*,\\s*"+NAME+")?"+
                                           "\\s+FROM\\s+"+NAME+
                                           "\\s+WHERE\\s+"+CONDITION+
@@ -31,7 +31,11 @@ public class InputMaster {
             String first = input.split(" ")[0];
             switch (first){
                 case "SELECT":
-                    //
+                    if(input.trim().matches(REGEX_SELECTOR)){
+                        //
+                    }else{
+                        Hermes.red(first+" is invalid !");
+                    }
                     break;
                 case "REMOVE":
                     remove(input, desti, t);
