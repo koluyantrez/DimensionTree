@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * This class is a data structure. It is composed of two sorted arrayList. The first is ordered according to the
- * x-coordinates and the second is ordered according to the y-coordinates.
+ * x-coordinates and the second is ordered according to the y-coordinates. We cannot make any modifications.
  *
  */
 public class CoupleList {
@@ -41,11 +41,9 @@ public class CoupleList {
     }
 
     /**
-     * This method gives an array of AinaList composed by the division of the current structure. It separates according
-     * to the x-coordinate if the depth is even. Otherwise, it does the division according to the y-coordinate.
+     * It initializes each ArrayList and the CoupleList from the split formed with the ArrayList.
      *
      * @param depth     The current depth.
-     * @return          An array of AinaList with the two parts of the division of the original list.
      */
     public void split(int depth){
         if(secondHalfY!=null){
@@ -125,14 +123,21 @@ public class CoupleList {
         System.out.println();
     }
 
+
+    /**
+     * Show on the terminal the content of the structure. The data is displayed according to their place in the two
+     * lists (sorted by x-coordinate and y-coordinate).
+     *
+     * @return  The content of the structure.
+     */
     @Override
     public String toString(){
-        String out = "Point by x-coord : \n";
+        String out = "Point by x-coordinate : \n";
         for(Point p : xray){
             out = out+p.toString() + "|";
         }
         out = out+'\n';
-        out = out+"Point by y-coord : \n";
+        out = out+"Point by y-coordinate : \n";
         for(Point p : yankee){
             out = out+p.toString() + "|";
         }

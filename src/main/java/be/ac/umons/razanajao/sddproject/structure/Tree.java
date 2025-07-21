@@ -1,9 +1,10 @@
-//Classe Tree decrivant un arbre binaire selon la definition recursive vue au cours
-//L'arbre vide n'est pas represente par une reference vide, 
-//mais par un "noeud vide", c'est-a-dire une feuille sans donnee
-
 package be.ac.umons.razanajao.sddproject.structure;
 
+/**
+ * Describes a binary tree. Taken from moodle (2023-2024).
+ *
+ * @param <D> the type of the data stored in the tree.
+ */
 public class Tree<D> {
 	private D data;
 	private Tree<D> left, right;

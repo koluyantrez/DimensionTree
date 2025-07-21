@@ -1,7 +1,7 @@
 package be.ac.umons.razanajao.sddproject.structure;
 
 /**
- * Describes a binary search tree. It extends Tree class. Taken from moodle and adapted for KdTree.
+ * Describes a binary search tree. It extends Tree class. Taken from moodle and adapted for KdTree (2023-2024).
  *
  * @param <D> the type of the data stored in the tree that extends Comparable.
  */
