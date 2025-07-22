@@ -14,6 +14,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static be.ac.umons.razanajao.sddproject.backend.InputMaster.extension;
+
 
 /**
  * This class are designed to manage the link between resource and code (overwrite, acces, removing, ...).
@@ -213,9 +215,7 @@ public class FileMaster {
             return;
         }
 
-        if (!name.endsWith(".txt")) {
-            name += ".txt";
-        }
+        name=extension(name);
 
         try (FileWriter fw = new FileWriter(DATA_ACCESS + File.separator + name, append)) {
             fw.write(t.getY() + "\n");
@@ -247,11 +247,8 @@ public class FileMaster {
      * @param oldName   The old name of the file.
      */
     public static void rename(String newName, String oldName){
-        if(!newName.endsWith(".txt"))
-            newName = newName+".txt";
-        if(!oldName.endsWith(".txt"))
-            oldName = oldName+".txt";
-
+        newName=extension(newName);
+        oldName=extension(oldName);
         Path oldFile = Paths.get(DATA_ACCESS+File.separator+oldName);
         Path newFile = Paths.get(DATA_ACCESS+File.separator+newName);
         try {

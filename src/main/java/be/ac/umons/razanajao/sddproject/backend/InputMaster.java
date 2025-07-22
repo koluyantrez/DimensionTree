@@ -18,6 +18,18 @@ public class InputMaster {
                                           "(\\s+AND\\s+"+CONDITION+")?$";
 
     /**
+     * It ensures that there are the extension for thie file.
+     *
+     * @param desti     The file name in the input.
+     * @return          The name with the extension.
+     */
+    public static String extension(String desti){
+        if(!desti.endsWith(".txt"))
+            desti=desti+".txt";
+        return desti;
+    }
+
+    /**
      * This function is the first step of the input analysis. It checks the first word and apply the good function if
      * it manages. Otherwise, the request are invalid.
      *
@@ -25,8 +37,7 @@ public class InputMaster {
      */
     public static boolean fireWall(String input, String desti, Table t){
         boolean touch = false;
-        if(!desti.endsWith(".txt"))
-            desti=desti+".txt";
+        desti=extension(desti);
         if(input.length()>2) {
             String first = input.split(" ")[0];
             switch (first){
@@ -86,9 +97,7 @@ public class InputMaster {
         if(!input.split("IN")[0].trim().endsWith("IN"))
             Hermes.red("Syntax error : it must be IN");
 
-        if(!desti.endsWith(".txt")){
-            desti=desti+".txt";
-        }
+        desti=extension(desti);
 
         if(desti.equals(target)){
             t.add(input);
@@ -118,5 +127,9 @@ public class InputMaster {
         } catch (NumberFormatException e) {
             Hermes.red("Syntax error : number");
         }
+    }
+
+    public static Table select(){
+
     }
 }
