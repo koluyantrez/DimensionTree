@@ -31,6 +31,13 @@ Renaming => RENAME old_name TO new_name
 
 Adding => ADD data1, data2, data3 IN target_file
 
-Removing => REMOVE index_row FROM target_file
+Removing => REMOVE id_row FROM target_file
 
-Selecting =>
+Selecting => SELECT c1 FROM P WHERE condition1
+             SELECT c1 FROM P WHERE condition1 AND condition2
+             SELECT c1, c2 FROM P WHERE condition1
+             SELECT c1, c2 FROM P WHERE condition1 AND condition2
+
+Let x and y be reals, a condition can be => c >= x
+                                            c <= x
+                                            c in [x,y]
