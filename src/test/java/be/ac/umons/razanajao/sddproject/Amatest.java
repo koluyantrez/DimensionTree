@@ -130,21 +130,23 @@ public class Amatest {
     void checkSelectSyntax(){
         String NAME = "[a-zA-Z0-9_]+";
         String NUMBER = "-?\\d+(\\.\\d+)?";
-        String CONDITION = "("+NAME+"\\s*(>=|<=)\\s*"+NUMBER+"|"+NAME+"\\s+in\\s+\\["+NUMBER+",\\s*"+NUMBER+"\\])";
+        String CONDITION = "("+NAME+"\\s+(>=|<=)\\s+"+NUMBER+"|"+NAME+"\\s+in\\s+\\["+NUMBER+",\\s*"+NUMBER+"\\])";
         String REGEX_SELECTOR = "^SELECT\\s+"+NAME+
                 "(\\s*,\\s*"+NAME+")?"+
                 "\\s+FROM\\s+"+NAME+
                 "\\s+WHERE\\s+"+CONDITION+
                 "(\\s+AND\\s+"+CONDITION+")?$";
 
-        String t1 = "SELECT num FROM wrc_estonia WHERE num<=40";
+        String t1 = "SELECT num FROM wrc_estonia WHERE num <= 40";
         String f1 = "SELECT pro day FROM fifa WHERE pro>=4 AND day>=33";
-        String t2 = "SELECT time FROM war WHERE end in [1453,1789] AND time>=20";
+        String t2 = "SELECT time FROM war WHERE end in [1453,1789] AND time >= 20";
         String f2 = "SELECT hertz, teta FROM sinusoid.txt WHERE hertz in [163,282];";
+        String f3 = "SELECT girl,rank FROM perfo.txt WHERE rank<=4.2;";
         assertTrue(t1.trim().matches(REGEX_SELECTOR));
         assertTrue(t2.trim().matches(REGEX_SELECTOR));
         assertFalse(f1.trim().matches(REGEX_SELECTOR));
         assertFalse(f2.trim().matches(REGEX_SELECTOR));
+        assertFalse(f3.trim().matches(REGEX_SELECTOR));
 
     }
 

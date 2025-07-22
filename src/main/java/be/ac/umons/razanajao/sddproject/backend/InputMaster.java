@@ -49,7 +49,7 @@ public class InputMaster {
                     }
                     break;
                 case "REMOVE":
-                    remove(input, desti, t);
+                    remove(input,desti, t);
                     break;
                 case "ADD":
                     add(input,desti,t);
@@ -109,11 +109,10 @@ public class InputMaster {
     /**
      * This function allows to remove a row from the current table. But it does not write in the text file.
      *
-     * @param input
-     * @param target
-     * @param t
+     * @param input     The input to consider
+     * @param t         The current table.
      */
-    public static void remove(String input, String target, Table t){
+    public static void remove(String input, String target,Table t){
         String[] parser = input.split(" ");
         if(parser.length!=4 || !parser[2].equals("FROM"))
             Hermes.red("Syntax error, please read the help");
@@ -123,13 +122,19 @@ public class InputMaster {
         }
 
         try{
-            t.remove(Double.parseDouble(parser[1]));
+            String desti = input.split("FROM")[1].trim();
+            if(desti.equals(target)){
+                t.remove(Double.parseDouble(parser[1]));
+            }else{
+                Hermes.red("The file " + desti + " does not exist");
+            }
         } catch (NumberFormatException e) {
             Hermes.red("Syntax error : number");
         }
     }
 
-    public static Table select(){
+    /*public static Table select(String input){
+        String[] parser = input.split("[,\\s\\[\\]]+");
 
-    }
+    }*/
 }
