@@ -148,6 +148,14 @@ public class Table {
         return new CoupleList(xavi,yamal);
     }
 
+    public boolean contains(String target){
+        for (String s : getHeader()){
+            if (s.equals(target))
+                return true;
+        }
+        return false;
+    }
+
     /**
      * getters & setters
      *
