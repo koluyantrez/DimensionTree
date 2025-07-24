@@ -123,6 +123,18 @@ public class CoupleList {
         System.out.println();
     }
 
+    public void add(Point p){
+        getXray().add(p);
+        getYankee().add(p);
+        sort();
+    }
+
+    public void remove(Point p){
+        getXray().remove(p);
+        getYankee().remove(p);
+        sort();
+    }
+
 
     /**
      * Show on the terminal the content of the structure. The data is displayed according to their place in the two

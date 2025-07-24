@@ -1,6 +1,7 @@
 package be.ac.umons.razanajao.sddproject.backend;
 
 import be.ac.umons.razanajao.sddproject.frontend.Hermes;
+import be.ac.umons.razanajao.sddproject.structure.CoupleList;
 
 /**
  * This class manage the user request. We consider that the user are allowed to remove, rename, select et put some
@@ -35,7 +36,7 @@ public class InputMaster {
      *
      * @param input The user request from the TextField.
      */
-    public static boolean fireWall(String input, String desti, Table t){
+    public static boolean fireWall(String input, String desti, Table t,CoupleList cl){
         boolean touch = false;
         desti=extension(desti);
         if(input.length()>2) {
@@ -49,10 +50,10 @@ public class InputMaster {
                     }
                     break;
                 case "REMOVE":
-                    remove(input,desti, t);
+                    remove(input,desti, t,cl);
                     break;
                 case "ADD":
-                    add(input,desti,t);
+                    add(input,desti,t,cl);
                     break;
                 case "RENAME":
                     rename(input);
@@ -91,7 +92,7 @@ public class InputMaster {
      * @param target    The target file.
      * @param t         The current table.
      */
-    public static void add(String input, String target, Table t){
+    public static void add(String input, String target, Table t, CoupleList cl){
 
         String desti = input.split("IN")[1].trim();
         if(!input.split("IN")[0].trim().endsWith("IN"))
@@ -100,7 +101,7 @@ public class InputMaster {
         desti=extension(desti);
 
         if(desti.equals(target)){
-            t.add(input);
+            t.add(input,cl);
         }else{
             Hermes.red("The file " + desti + " does not exist");
         }
@@ -112,7 +113,7 @@ public class InputMaster {
      * @param input     The input to consider
      * @param t         The current table.
      */
-    public static void remove(String input, String target,Table t){
+    public static void remove(String input, String target,Table t, CoupleList cl){
         String[] parser = input.split(" ");
         if(parser.length!=4 || !parser[2].equals("FROM"))
             Hermes.red("Syntax error, please read the help");
@@ -123,8 +124,9 @@ public class InputMaster {
 
         try{
             String desti = input.split("FROM")[1].trim();
+            desti=extension(desti);
             if(desti.equals(target)){
-                t.remove(Double.parseDouble(parser[1]));
+                t.remove(Double.parseDouble(parser[1]),cl);
             }else{
                 Hermes.red("The file " + desti + " does not exist");
             }
@@ -133,8 +135,34 @@ public class InputMaster {
         }
     }
 
-    /*public static Table select(String input){
+    /*public static Table selectOne(String input, String target, Table t){
         String[] parser = input.split("[,\\s\\[\\]]+");
+        String desti = "";
+        if(t.contains(parser[1])) {
+            if(parser[3].equals("FROM")) {
+                if(t.contains(parser[2])) {
+                    desti = extension(parser[4]);
+                }else{
+                    Hermes.red("Check the spelling");
+                    return null;
+                }
+            }else{
+                desti = extension(parser[3]);
+            }
+        }else{
+            Hermes.red("Check the spelling");
+            return null;
+        }
+        if(desti.equals(target)){
+            return selectTwo(input.split("WHERE")[1].trim(),t);
+        }else{
+            Hermes.red("The file " + desti + " does not exist");
+            return null;
+        }
+    }
+
+    public static Table selectTwo(String afterWhere, Table t){
+        String[] allCond = afterWhere.split("\\s+AND\\s+");
 
     }*/
 }

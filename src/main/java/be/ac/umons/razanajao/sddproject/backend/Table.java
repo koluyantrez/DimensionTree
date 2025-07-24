@@ -67,10 +67,10 @@ public class Table {
      *
      * @param request   The new data to put in the table.
      */
-    public void add(String request){
+    public void add(String request, CoupleList cl){
         String[] arr = request.split("[,\\s]+");
         if(arr.length!=6){
-            Hermes.green("The query data is invalid (size)");
+            Hermes.red("The query data is invalid (size)");
             return;
         }
         try{
@@ -85,10 +85,11 @@ public class Table {
                 newData[j] = arr[j+1];
             }
             update[this.x] = newData;
+            Point injection = new Point(Double.parseDouble(arr[1]),Double.parseDouble(arr[2]));
 
             setData(update);
             setX(newX);
-            display();
+            cl.add(injection);
             Hermes.green(arr[3]+" are added");
 
         } catch (NumberFormatException e) {
@@ -101,7 +102,7 @@ public class Table {
      *
      * @param number    The index of the rows with the data that the user want to remove.
      */
-    public void remove(double number){
+    public void remove(double number, CoupleList cl){
         if(number>this.getX()){
             Hermes.green("The index must be lower than "+this.getX());
             return;
@@ -121,11 +122,13 @@ public class Table {
                     ++p;
                     String removed = String.join(", ", getData()[i]);
                     Hermes.green(removed+" are removed");
+                    String[] bye = removed.split(",\\s*");
+                    Point delete = new Point(Double.parseDouble(bye[0]),Double.parseDouble(bye[1]));
+                    cl.remove(delete);
                 }
             }
             setData(update);
             setX(newX);
-            display();
         }
     }
 

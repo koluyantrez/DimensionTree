@@ -27,6 +27,7 @@ public class TestOrthogonalRangeSearching extends Application {
     GridPane gp = new GridPane();
     Table t;
     KdTree<CoupleList> kdt = new KdTree<>();
+    CoupleList cl;
 
     private final TextField inputUser = new TextField();
     private final TextField newFileName = new TextField("Name your file.txt");
@@ -230,14 +231,7 @@ public class TestOrthogonalRangeSearching extends Application {
                     gp.getStyleClass().add("grid");
                     sp.setContent(gp);
                     greenCode(data.getValue()+" is displayed as a table");
-                    System.out.println(t.getX());
-                    System.out.println(t.getY());
-                }
-        );
-
-        displayTree.setOnAction(
-                e -> {
-                    greenCode(data.getValue()+" is displayed as a tree");
+                    cl = t.giveDataset();
                 }
         );
 
@@ -248,7 +242,7 @@ public class TestOrthogonalRangeSearching extends Application {
         inputUser.setOnKeyPressed(
                 e -> {
                     if(e.getCode() == KeyCode.ENTER){
-                        if(InputMaster.fireWall(inputUser.getText(), data.getValue().toString(),t)) {
+                        if(InputMaster.fireWall(inputUser.getText(), data.getValue().toString(),t,cl)) {
                             dataList = FileMaster.initDefault();
                             data.setItems(FXCollections.observableArrayList(dataList));
                             data.getSelectionModel().selectFirst();
@@ -273,10 +267,8 @@ public class TestOrthogonalRangeSearching extends Application {
 
         displayTree.setOnAction(
                 e -> {
-                    CoupleList fromTable = t.giveDataset();
-                    kdt = kdt.buildKdTree(fromTable,0);
+                    kdt = kdt.buildKdTree(cl,0);
                     kdt.print();
-                    //fromTable.display();
                 }
         );
 
