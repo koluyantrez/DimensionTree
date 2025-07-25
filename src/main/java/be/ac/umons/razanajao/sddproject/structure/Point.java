@@ -91,6 +91,18 @@ public class Point{
         return equalsX(p) && equalsY(p);
     }
 
+    public boolean in(double x1,double x2,double y1,double y2){
+        return inXray(x1,x2) && inYankee(y1,y2);
+    }
+
+    public boolean inXray(double x1,double x2){
+        return x1<=getX() && x2>=getX();
+    }
+
+    public boolean inYankee(double y1,double y2){
+        return y1<=getY() && y2>=getY();
+    }
+
     /**
      * It gives the string format of a point.
      *
