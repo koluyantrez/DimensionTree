@@ -135,7 +135,7 @@ public class InputMaster {
         }
     }
 
-    /*public static Table selectOne(String input, String target, Table t){
+/*    public static Table selectOne(String input, String target, Table t){
         String[] parser = input.split("[,\\s\\[\\]]+");
         String desti = "";
         if(t.contains(parser[1])) {
