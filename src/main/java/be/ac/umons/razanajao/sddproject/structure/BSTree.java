@@ -25,4 +25,8 @@ public class BSTree<D> extends Tree<D>{
         return (BSTree<D>) super.getRight();
     }
 
+    public boolean isLeaf(){
+        return getLeft().isEmpty() && getRight().isEmpty();
+    }
+
 }
