@@ -82,7 +82,7 @@ public class Amatest {
     void checkAllPointInFirstPart(){
         CoupleList al = t.giveDataset();
         al.split(98);
-        CoupleList firstPart = al.getFirst();
+        CoupleList firstPart = al.getFirstPart();
 
 
         boolean answer1 = true;
@@ -106,7 +106,7 @@ public class Amatest {
     void checkAllPointInSecondPart() {
         CoupleList al = t.giveDataset();
         al.split(141);
-        CoupleList secondPart = al.getSecond();
+        CoupleList secondPart = al.getSecondPart();
 
         boolean answer1 = true;
         for(Point p : secondPart.getXray()){
@@ -128,7 +128,7 @@ public class Amatest {
 
     @Test
     void checkSelectSyntax(){
-        String NAME = "[a-zA-Z0-9_]+";
+        String NAME = "[a-zA-Z0-9_\\.]+";
         String NUMBER = "-?\\d+(\\.\\d+)?";
         String CONDITION = "("+NAME+"\\s+(>=|<=)\\s+"+NUMBER+"|"+NAME+"\\s+in\\s+\\["+NUMBER+",\\s*"+NUMBER+"\\])";
         String REGEX_SELECTOR = "^SELECT\\s+"+NAME+
@@ -141,12 +141,14 @@ public class Amatest {
         String f1 = "SELECT pro day FROM fifa WHERE pro>=4 AND day>=33";
         String t2 = "SELECT time FROM war WHERE end in [1453,1789] AND time >= 20";
         String f2 = "SELECT hertz, teta FROM sinusoid.txt WHERE hertz in [163,282];";
-        String f3 = "SELECT girl,rank FROM perfo.txt WHERE rank<=4.2;";
+        String f3 = "SELECT girl,rank FROM perfo.txt WHERE rank<=4.2";
+        String t3 = "    SELECT girl, rank FROM perfo.txt WHERE rank <= 4.2";
         assertTrue(t1.trim().matches(REGEX_SELECTOR));
         assertTrue(t2.trim().matches(REGEX_SELECTOR));
         assertFalse(f1.trim().matches(REGEX_SELECTOR));
         assertFalse(f2.trim().matches(REGEX_SELECTOR));
         assertFalse(f3.trim().matches(REGEX_SELECTOR));
+        assertTrue(t3.trim().matches(REGEX_SELECTOR));
 
     }
 
