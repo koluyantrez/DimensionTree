@@ -232,6 +232,7 @@ public class TestOrthogonalRangeSearching extends Application {
                     sp.setContent(gp);
                     greenCode(data.getValue()+" is displayed as a table");
                     cl = t.giveDataset();
+                    kdt = kdt.buildKdTree(cl,0);
                 }
         );
 
@@ -242,7 +243,7 @@ public class TestOrthogonalRangeSearching extends Application {
         inputUser.setOnKeyPressed(
                 e -> {
                     if(e.getCode() == KeyCode.ENTER){
-                        if(InputMaster.fireWall(inputUser.getText(), data.getValue().toString(),t,cl)) {
+                        if(InputMaster.fireWall(inputUser.getText(), data.getValue().toString(),t,cl,kdt)) {
                             dataList = FileMaster.initDefault();
                             data.setItems(FXCollections.observableArrayList(dataList));
                             data.getSelectionModel().selectFirst();
@@ -267,7 +268,6 @@ public class TestOrthogonalRangeSearching extends Application {
 
         displayTree.setOnAction(
                 e -> {
-                    kdt = kdt.buildKdTree(cl,0);
                     kdt.print();
                 }
         );

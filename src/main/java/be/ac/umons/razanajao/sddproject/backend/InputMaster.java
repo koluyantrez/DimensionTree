@@ -2,6 +2,10 @@ package be.ac.umons.razanajao.sddproject.backend;
 
 import be.ac.umons.razanajao.sddproject.frontend.Hermes;
 import be.ac.umons.razanajao.sddproject.structure.CoupleList;
+import be.ac.umons.razanajao.sddproject.structure.KdTree;
+import be.ac.umons.razanajao.sddproject.structure.Point;
+
+import java.util.ArrayList;
 
 /**
  * This class manage the user request. We consider that the user are allowed to remove, rename, select et put some
@@ -9,7 +13,7 @@ import be.ac.umons.razanajao.sddproject.structure.CoupleList;
  *
  */
 public class InputMaster {
-    private static final String NAME = "[a-zA-Z0-9_]+";
+    private static final String NAME = "[a-zA-Z0-9_\\.]+";
     private static final String NUMBER = "-?\\d+(\\.\\d+)?";
     private static final String CONDITION = "("+NAME+"\\s*(>=|<=)\\s*"+NUMBER+"|"+NAME+"\\s+in\\s+\\["+NUMBER+",\\s*"+NUMBER+"\\])";
     private static final String REGEX_SELECTOR = "^SELECT\\s+"+NAME+
@@ -36,7 +40,7 @@ public class InputMaster {
      *
      * @param input The user request from the TextField.
      */
-    public static boolean fireWall(String input, String desti, Table t,CoupleList cl){
+    public static boolean fireWall(String input, String desti, Table t,CoupleList cl, KdTree<CoupleList> kdt){
         boolean touch = false;
         desti=extension(desti);
         if(input.length()>2) {
@@ -44,7 +48,7 @@ public class InputMaster {
             switch (first){
                 case "SELECT":
                     if(input.trim().matches(REGEX_SELECTOR)){
-                        //
+                        t.buildFromList(selectOne(input,desti,t,kdt));
                     }else{
                         Hermes.red(first+" is invalid !");
                     }
@@ -135,7 +139,7 @@ public class InputMaster {
         }
     }
 
-    /*public static Table selectOne(String input, String target, Table t){
+    public static ArrayList<Point> selectOne(String input, String target, Table t, KdTree<CoupleList> kdt){
         String[] parser = input.split("[,\\s\\[\\]]+");
         String desti = "";
         if(t.contains(parser[1])) {
@@ -143,26 +147,64 @@ public class InputMaster {
                 if(t.contains(parser[2])) {
                     desti = extension(parser[4]);
                 }else{
-                    Hermes.red("Check the spelling");
+                    Hermes.red("Check the spelling 1");
                     return null;
                 }
             }else{
                 desti = extension(parser[3]);
             }
         }else{
-            Hermes.red("Check the spelling");
+            Hermes.red("Check the spelling 2");
             return null;
         }
         if(desti.equals(target)){
-            return selectTwo(input.split("WHERE")[1].trim(),t);
+            return selectTwo(input.split("WHERE")[1].trim(),t,kdt);
         }else{
             Hermes.red("The file " + desti + " does not exist");
             return null;
         }
     }
 
-    public static Table selectTwo(String afterWhere, Table t){
+    public static ArrayList<Point> selectTwo(String afterWhere, Table t, KdTree<CoupleList> kdt){
         String[] allCond = afterWhere.split("\\s+AND\\s+");
-
-    }*/
+        double[] compare = new double[4];
+        for(String c : allCond){
+            String[] parser = c.split("[,\\s\\[\\]]+");
+            if(parser[0].equals(t.getHeader()[0])){
+                switch(parser[1]){
+                    case "<=":
+                        compare[0] = Double.NEGATIVE_INFINITY;
+                        compare[1] = Double.parseDouble(parser[2]);
+                        break;
+                    case ">=":
+                        compare[1] = Double.POSITIVE_INFINITY;
+                        compare[0] = Double.parseDouble(parser[2]);
+                        break;
+                    case "in":
+                        compare[0] = Double.parseDouble(parser[2]);
+                        compare[1] = Double.parseDouble(parser[3]);
+                        break;
+                }
+            }else if(parser[0].equals(t.getHeader()[1])){
+                switch(parser[1]){
+                    case "<=":
+                        compare[2] = Double.NEGATIVE_INFINITY;
+                        compare[3] = Double.parseDouble(parser[2]);
+                        break;
+                    case ">=":
+                        compare[3] = Double.POSITIVE_INFINITY;
+                        compare[2] = Double.parseDouble(parser[2]);
+                        break;
+                    case "in":
+                        compare[2] = Double.parseDouble(parser[2]);
+                        compare[3] = Double.parseDouble(parser[3]);
+                        break;
+                }
+            }else{
+                Hermes.red("Check the spelling 3");
+            }
+        }
+        System.out.println("InputMaster 207 |"+compare[0]+" "+compare[1]+" "+compare[2]+" "+compare[3]);
+        return kdt.searchKdTree(kdt,compare[0],compare[1],compare[2],compare[3]);
+    }
 }

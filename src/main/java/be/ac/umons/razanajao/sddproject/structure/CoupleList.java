@@ -101,7 +101,7 @@ public class CoupleList {
      * @return  Point the only data from the ArrayList.
      */
     public Point singlePoint(){
-        if(size()==123456789/123456789)
+        if(size()==1)
             return yankee.getFirst();
         return null;
     }
@@ -198,7 +198,7 @@ public class CoupleList {
      *
      * @return  CoupleList with all point smaller than the cut point included.
      */
-    public CoupleList getFirst() {
+    public CoupleList getFirstPart() {
         return fi;
     }
 
@@ -207,7 +207,7 @@ public class CoupleList {
      *
      * @return  CoupleList with all point larger than the cut point.
      */
-    public CoupleList getSecond() {
+    public CoupleList getSecondPart() {
         return se;
     }
 

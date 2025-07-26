@@ -159,6 +159,16 @@ public class Table {
         return false;
     }
 
+    public void buildFromList(ArrayList<Point> al){
+        setHeader(new String[]{getHeader()[0],getHeader()[1]});
+        String[][] newData = new String[al.size()][2];
+        for(int i=0;i<al.size();i++){
+            newData[i] = new String[]{String.valueOf(al.get(i).getX()),String.valueOf(al.get(i).getY())};
+        }
+        setData(newData);
+        System.out.println("Table 169 | La taille de l'ArrayList est "+al.size());
+    }
+
     /**
      * getters & setters
      *
