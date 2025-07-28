@@ -57,18 +57,19 @@ public class KdTree<D> extends BSTree<D> {
             }
         } else {
             CoupleList current = root.getData();
-            if(current.getXray().getFirst().getX() >= c1 && current.getXray().getLast().getX() <= c2) { //line 4
-                listing.addAll(root.getFromLeaf());
-            } else {
-                if((current.getXray().getFirst().getX() <= c1 && current.getXray().getLast().getX() <= c2) || (current.getXray().getFirst().getX() >= c1 && current.getXray().getLast().getX() >= c2)) { //line 7
+            if(current.getFirstPart().getXray().getFirst().getX() >= c1 && current.getFirstPart().getXray().getLast().getX() <= c2) { //line 4
+                listing.addAll(root.getLeft().getFromLeaf());
+            }else if((current.getFirstPart().getXray().getFirst().getX() <= c1 && current.getFirstPart().getXray().getLast().getX() <= c2) ||
+                   (current.getFirstPart().getXray().getFirst().getX() >= c1 && current.getFirstPart().getXray().getLast().getX() >= c2) ||
+                   (current.getFirstPart().getXray().getFirst().getX() <= c1 && current.getFirstPart().getXray().getLast().getX() >= c2)) { //line 7
                     listing.addAll(searchKdTreeX(root.getLeft(), c1, c2));
-                }
-                if(current.getXray().getFirst().getX() >= c1 && current.getXray().getLast().getX() <= c2) { //line 10
-                    listing.addAll(root.getFromLeaf());
-                    current.display();
-                } else if((current.getXray().getFirst().getX() <= c1 && current.getXray().getLast().getX() <= c2)||(current.getXray().getFirst().getX() >= c1 && current.getXray().getLast().getX() >= c2)) { //line 13
-                    listing.addAll(searchKdTreeX(root.getRight(), c1, c2));
-                }
+            }
+            if(current.getSecondPart().getXray().getFirst().getX() >= c1 && current.getSecondPart().getXray().getLast().getX() <= c2) { //line 10
+                listing.addAll(root.getRight().getFromLeaf());
+            } else if((current.getSecondPart().getXray().getFirst().getX() <= c1 && current.getSecondPart().getXray().getLast().getX() <= c2) ||
+                    (current.getSecondPart().getXray().getFirst().getX() >= c1 && current.getSecondPart().getXray().getLast().getX() >= c2) ||
+                    (current.getSecondPart().getXray().getFirst().getX() <= c1 && current.getSecondPart().getXray().getLast().getX() >= c2)) { //line 13
+                listing.addAll(searchKdTreeX(root.getRight(), c1, c2));
             }
         }
         return listing;
@@ -111,8 +112,9 @@ public class KdTree<D> extends BSTree<D> {
     public ArrayList<Point> searchKdTree(KdTree<CoupleList> kdt,double a1,double a2,double b1,double b2) {
         ArrayList<Point> alx = new ArrayList<>();
         ArrayList<Point> aly = new ArrayList<>();
-        if(a1!=0 || a2!=0)
-            alx = searchKdTreeX(kdt,a1,a2);
+        if(a1!=0 || a2!=0) {
+            alx = searchKdTreeX(kdt, a1, a2);
+        }
 
         if(b1!=0 || b2!=0)
             aly = searchKdTreeY(kdt,b1,b2);
@@ -122,7 +124,6 @@ public class KdTree<D> extends BSTree<D> {
             aly.add(new Point(0,0,NOTHING));
             return aly;
         }
-
 
         if(alx.size()==0){
             return aly;
