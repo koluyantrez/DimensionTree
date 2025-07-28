@@ -131,7 +131,7 @@ public class TestOrthogonalRangeSearching extends Application {
 
 
 
-        inputUser.getStyleClass().add("leana");
+        inputUser.getStyleClass().add("lamp");
         inputUser.setLayoutX(50);
         inputUser.setLayoutY(100);
 
@@ -160,7 +160,7 @@ public class TestOrthogonalRangeSearching extends Application {
         data.setLayoutY(20);
 
         help.getStyleClass().add("help");
-        help.setLayoutX(550);
+        help.setLayoutX(666);
         help.setLayoutY(20);
 
         displayGrid.getStyleClass().add("button");

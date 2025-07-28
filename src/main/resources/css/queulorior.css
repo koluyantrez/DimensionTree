@@ -3,9 +3,9 @@
     -fx-background-color: midnightblue;
 }
 
-.leana {
+.lamp {
   -fx-background-color: navy;
-  -fx-pref-width: 555px;
+  -fx-pref-width: 666px;
   -fx-pref-height: 55px;
   -fx-padding: 10px;
   -fx-border-color: aliceblue;
@@ -19,7 +19,7 @@
 }
 
 
-.leana:focused {
+.lamp:focused {
   -fx-text-fill: aliceblue;
   -fx-background-color: navy;
   -fx-effect: dropshadow(gaussian, aliceblue, 20, 0.5, 0, 0);
