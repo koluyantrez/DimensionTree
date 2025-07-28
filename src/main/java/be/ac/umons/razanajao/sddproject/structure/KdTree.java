@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class KdTree<D> extends BSTree<D> {
 
+    private final String NOTHING = "NONE";
+
     public KdTree() {
         super();
     }
@@ -52,26 +54,19 @@ public class KdTree<D> extends BSTree<D> {
             Point p = root.getData().singlePoint();
             if(p.inXray(c1, c2)) {
                 listing.add(p);
-                System.out.println("KdTree 55 | lonely " + p);
             }
         } else {
             CoupleList current = root.getData();
             if(current.getXray().getFirst().getX() >= c1 && current.getXray().getLast().getX() <= c2) { //line 4
-                System.out.println("KdTree 62 | Complètement dans R");
-                current.display();
                 listing.addAll(root.getFromLeaf());
             } else {
-                System.out.println("KdTree 65 | Pas complètement dans R");
                 if((current.getXray().getFirst().getX() <= c1 && current.getXray().getLast().getX() <= c2) || (current.getXray().getFirst().getX() >= c1 && current.getXray().getLast().getX() >= c2)) { //line 7
-                    System.out.println("KdTree 67");
                     listing.addAll(searchKdTreeX(root.getLeft(), c1, c2));
                 }
                 if(current.getXray().getFirst().getX() >= c1 && current.getXray().getLast().getX() <= c2) { //line 10
                     listing.addAll(root.getFromLeaf());
-                    System.out.println("KdTree 72 | Complètement dans R");
                     current.display();
                 } else if((current.getXray().getFirst().getX() <= c1 && current.getXray().getLast().getX() <= c2)||(current.getXray().getFirst().getX() >= c1 && current.getXray().getLast().getX() >= c2)) { //line 13
-                    System.out.println("KdTree 74");
                     listing.addAll(searchKdTreeX(root.getRight(), c1, c2));
                 }
             }
@@ -122,12 +117,9 @@ public class KdTree<D> extends BSTree<D> {
         if(b1!=0 || b2!=0)
             aly = searchKdTreeY(kdt,b1,b2);
 
-        /*System.out.println("KdTree 125");
-        System.out.println(alx.size());
-        System.out.println(aly.size());*/
 
         if(alx.size()==0 && aly.size()==0){
-            aly.add(new Point(0,0));
+            aly.add(new Point(0,0,NOTHING));
             return aly;
         }
 

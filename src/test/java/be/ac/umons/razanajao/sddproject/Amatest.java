@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Amatest {
     Point p1,p2,p3;
-
+    String someInfo = "";
     Table t;
 
     @BeforeEach
     void setUp() {
-        p1 = new Point(24, 8.32223);
-        p2 = new Point(104.478, 8.32229);
-        p3 = new Point(0.25, 74.487);
+        p1 = new Point(24, 8.32223,someInfo);
+        p2 = new Point(104.478, 8.32229,someInfo);
+        p3 = new Point(0.25, 74.487,someInfo);
 
         t = FileMaster.createTable("for_test.txt");
     }

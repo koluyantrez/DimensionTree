@@ -6,8 +6,8 @@ package be.ac.umons.razanajao.sddproject.structure;
  */
 public class Point{
 
-    private double x;
-    private double y;
+    private double x,y;
+    private String info;
     private final double ACCURACY = 10e-4;
 
     /**
@@ -16,9 +16,10 @@ public class Point{
      * @param x The x-coordinate of the point.
      * @param y The y-coordinate of the point.
      */
-    public Point(double x, double y){
+    public Point(double x, double y, String info){
         this.x=x;
         this.y=y;
+        this.info=info;
     }
 
     /**
@@ -110,7 +111,7 @@ public class Point{
      */
     @Override
     public String toString(){
-        return "("+x + ";" + y+")";
+        return "("+x + ";" + y+")->"+info;
     }
 
 
@@ -127,11 +128,19 @@ public class Point{
         return y;
     }
 
+    public String getInfo(){
+        return info;
+    }
+
     public void setX(double newX) {
         this.x = newX;
     }
 
     public void setY(double newY) {
         this.y = newY;
+    }
+
+    public void newInfo(String ni){
+        this.info=ni;
     }
 }

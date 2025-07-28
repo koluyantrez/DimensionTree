@@ -85,7 +85,7 @@ public class Table {
                 newData[j] = arr[j+1];
             }
             update[this.x] = newData;
-            Point injection = new Point(Double.parseDouble(arr[1]),Double.parseDouble(arr[2]));
+            Point injection = new Point(Double.parseDouble(arr[1]),Double.parseDouble(arr[2]),arr[3]);
 
             setData(update);
             setX(newX);
@@ -123,7 +123,7 @@ public class Table {
                     String removed = String.join(", ", getData()[i]);
                     Hermes.green(removed+" are removed");
                     String[] bye = removed.split(",\\s*");
-                    Point delete = new Point(Double.parseDouble(bye[0]),Double.parseDouble(bye[1]));
+                    Point delete = new Point(Double.parseDouble(bye[0]),Double.parseDouble(bye[1]),bye[2]);
                     cl.remove(delete);
                 }
             }
@@ -144,7 +144,7 @@ public class Table {
         ArrayList<Point> xavi = new ArrayList<>();
         ArrayList<Point> yamal = new ArrayList<>();
         for(String[] l : getData()){
-            recruiter = new Point(Double.parseDouble(l[0]),Double.parseDouble(l[1]));
+            recruiter = new Point(Double.parseDouble(l[0]),Double.parseDouble(l[1]),l[2]);
             xavi.add(recruiter);
             yamal.add(recruiter);
         }
@@ -160,13 +160,12 @@ public class Table {
     }
 
     public void buildFromList(ArrayList<Point> al){
-        setHeader(new String[]{getHeader()[0],getHeader()[1]});
-        String[][] newData = new String[al.size()][2];
+        setHeader(new String[]{getHeader()[0],getHeader()[1],getHeader()[2]});
+        String[][] newData = new String[al.size()][3];
         for(int i=0;i<al.size();i++){
-            newData[i] = new String[]{String.valueOf(al.get(i).getX()),String.valueOf(al.get(i).getY())};
+            newData[i] = new String[]{String.valueOf(al.get(i).getX()),String.valueOf(al.get(i).getY()),al.get(i).getInfo()};
         }
         setData(newData);
-        System.out.println("Table 169 | La taille de l'ArrayList est "+al.size());
     }
 
     /**
