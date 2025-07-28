@@ -10,7 +10,6 @@ import java.util.ArrayList;
 /**
  * This class manage the user request. We consider that the user are allowed to remove, rename, select et put some
  * data.
- *
  */
 public class InputMaster {
     private static final String NAME = "[a-zA-Z0-9_\\.]+";
@@ -38,7 +37,12 @@ public class InputMaster {
      * This function is the first step of the input analysis. It checks the first word and apply the good function if
      * it manages. Otherwise, the request are invalid.
      *
-     * @param input The user request from the TextField.
+     * @param input     The input from the user.
+     * @param desti     The file handled.
+     * @param t         The current table according to the file "desti".
+     * @param cl        The CoupleList according to the table "t".
+     * @param kdt       The Kd-Tree according to the file "desti".
+     * @return          True if the request is valid.
      */
     public static boolean fireWall(String input, String desti, Table t,CoupleList cl, KdTree<CoupleList> kdt){
         boolean touch = false;
@@ -95,6 +99,7 @@ public class InputMaster {
      * @param input     The user input.
      * @param target    The target file.
      * @param t         The current table.
+     * @param cl        The CoupleList of the current table.
      */
     public static void add(String input, String target, Table t, CoupleList cl){
 
@@ -116,6 +121,7 @@ public class InputMaster {
      *
      * @param input     The input to consider
      * @param t         The current table.
+     * @param cl        The CoupleList of the current table.
      */
     public static void remove(String input, String target,Table t, CoupleList cl){
         String[] parser = input.split(" ");
@@ -139,6 +145,15 @@ public class InputMaster {
         }
     }
 
+    /**
+     * This function return the list with all the points satisfying the request after a first filter (before WHERE).
+     *
+     * @param input     The input of the user.
+     * @param target    The target file.
+     * @param t         The current table.
+     * @param kdt       The Kd-Tree according to the file "target".
+     * @return          An ArrayList of point satisfying the request after a first analysis.
+     */
     public static ArrayList<Point> selectOne(String input, String target, Table t, KdTree<CoupleList> kdt){
         String[] parser = input.split("[,\\s\\[\\]]+");
         String desti = "";
@@ -147,24 +162,32 @@ public class InputMaster {
                 if(t.contains(parser[2])) {
                     desti = extension(parser[4]);
                 }else{
-                    Hermes.red("Check the spelling 1");
+                    Hermes.red("Check the spelling : "+parser[2]);
                     return null;
                 }
             }else{
                 desti = extension(parser[3]);
             }
         }else{
-            Hermes.red("Check the spelling 2");
+            Hermes.red("Check the spelling : "+parser[1]);
             return null;
         }
         if(desti.equals(target)){
             return selectTwo(input.split("WHERE")[1].trim(),t,kdt);
         }else{
-            Hermes.red("The file " + desti + " does not exist");
+            Hermes.red("The file \"" + desti + "\" does not exist");
             return null;
         }
     }
 
+    /**
+     * This function return the list with all the points satisfying the request after a second filter (after WHERE).
+     *
+     * @param afterWhere    The part after "WHERE" of the input from the user.
+     * @param t             The current table.
+     * @param kdt           The Kd-Tree according to the table "t".
+     * @return              An ArrayList of point satisfying the request after a second analysis.
+     */
     public static ArrayList<Point> selectTwo(String afterWhere, Table t, KdTree<CoupleList> kdt){
         String[] allCond = afterWhere.split("\\s+AND\\s+");
         double[] compare = new double[4];

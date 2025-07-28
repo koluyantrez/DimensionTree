@@ -66,6 +66,7 @@ public class Table {
      * This method allows to put new data in the table, the format must be respected.
      *
      * @param request   The new data to put in the table.
+     * @param cl        The CoupleList linked to the table.
      */
     public void add(String request, CoupleList cl){
         String[] arr = request.split("[,\\s]+");
@@ -101,6 +102,7 @@ public class Table {
      * This method allows to remove a rows of data with his index.
      *
      * @param number    The index of the rows with the data that the user want to remove.
+     * @param cl        The CoupleList linked to the table.
      */
     public void remove(double number, CoupleList cl){
         if(number>this.getX()){
@@ -134,10 +136,9 @@ public class Table {
 
 
     /**
-     * This method initializes an AinaList with the current content. It only takes the first two as x-coordinate and
-     * y-coordinate.
+     * This method initializes a CoupleList with the current content.
      *
-     * @return AinaList with the current content
+     * @return CoupleList with the current content
      */
     public CoupleList giveDataset(){
         Point recruiter;
@@ -151,6 +152,12 @@ public class Table {
         return new CoupleList(xavi,yamal);
     }
 
+    /**
+     * This method checks if the parameter are a title of column.
+     *
+     * @param target    The name that you want to know if it is a title of column
+     * @return          True if it is the case.
+     */
     public boolean contains(String target){
         for (String s : getHeader()){
             if (s.equals(target))
@@ -159,6 +166,11 @@ public class Table {
         return false;
     }
 
+    /**
+     * It builds a Table by an ArrayList of Point.
+     *
+     * @param al    The list of data to put in a Table.
+     */
     public void buildFromList(ArrayList<Point> al){
         setHeader(new String[]{getHeader()[0],getHeader()[1],getHeader()[2]});
         String[][] newData = new String[al.size()][3];
@@ -168,12 +180,12 @@ public class Table {
         setData(newData);
     }
 
+
+
     /**
      * getters & setters
      *
      */
-
-
     public int getX(){
         return this.x;
     }

@@ -13,8 +13,9 @@ public class Point{
     /**
      * Initializes a point with the given x-coordinate and y-coordinate
      *
-     * @param x The x-coordinate of the point.
-     * @param y The y-coordinate of the point.
+     * @param x     The x-coordinate of the point.
+     * @param y     The y-coordinate of the point.
+     * @param info  Some short information.
      */
     public Point(double x, double y, String info){
         this.x=x;
@@ -92,14 +93,37 @@ public class Point{
         return equalsX(p) && equalsY(p);
     }
 
+    /**
+     * It checks if the point is in the interval [x1;x2] and [y1;y2].
+     *
+     * @param x1    The shorter value to compare according to x-coordinate.
+     * @param x2    The greater value to compare according to x-coordinate.
+     * @param y1    The shorter value to compare according to y-coordinate.
+     * @param y2    The greater value to compare according to y-coordinate.
+     * @return      True if x is in [x1;x2] and y is in [y1;y2].
+     */
     public boolean in(double x1,double x2,double y1,double y2){
         return inXray(x1,x2) && inYankee(y1,y2);
     }
 
+    /**
+     * It checks if the point is in the interval [x1;x2].
+     *
+     * @param x1    The shorter value to compare according to x-coordinate.
+     * @param x2    The greater value to compare according to x-coordinate.
+     * @return      True if x is in [x1;x2].
+     */
     public boolean inXray(double x1,double x2){
         return x1<=getX() && x2>=getX();
     }
 
+    /**
+     * It checks if the point is in the interval [y1;y2].
+     *
+     * @param y1    The shorter value to compare according to y-coordinate.
+     * @param y2    The greater value to compare according to y-coordinate.
+     * @return      True if x is in [y1;y2].
+     */
     public boolean inYankee(double y1,double y2){
         return y1<=getY() && y2>=getY();
     }
@@ -107,7 +131,7 @@ public class Point{
     /**
      * It gives the string format of a point.
      *
-     * @return String -> (x;y)
+     * @return String -> (x;y)->...
      */
     @Override
     public String toString(){

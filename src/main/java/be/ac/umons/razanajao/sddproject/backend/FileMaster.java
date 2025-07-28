@@ -20,6 +20,8 @@ import static be.ac.umons.razanajao.sddproject.backend.InputMaster.extension;
 /**
  * This class are designed to manage the link between resource and code (overwrite, acces, removing, ...).
  *
+ * DATA_ACCESS is the path to the folder with all data.
+ * HELP_FILE is the text file with the tutorial.
  */
 public class FileMaster {
 
@@ -241,7 +243,7 @@ public class FileMaster {
 
 
     /**
-     * it allows to rename a file.
+     * It allows to rename a file.
      *
      * @param newName   The new name of the file.
      * @param oldName   The old name of the file.
