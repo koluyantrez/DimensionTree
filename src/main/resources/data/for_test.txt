@@ -20,5 +20,5 @@ username
 49 1.63 sybil
 55 1.78 alexa
 70 1.65 xev
-84 170 adaline
+84 1.7 adaline
 49 1.62 elles

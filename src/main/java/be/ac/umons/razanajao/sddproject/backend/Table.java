@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class Table {
 
-    int x,y;
-    String[] header;
-    String[][] data;
+    private int x,y;
+    private String[] header;
+    private String[][] data;
 
     /**
      * A table is defined by dimension (row and column). With this parameter, we can initialise the array for header
@@ -199,10 +199,13 @@ public class Table {
     }
 
     public void setHeader(String[] header) {
+        setY(header.length);
         this.header = header;
     }
 
     public void setData(String[][] data) {
+        setX(data.length);
+        setY(data[0].length);
         this.data = data;
     }
 

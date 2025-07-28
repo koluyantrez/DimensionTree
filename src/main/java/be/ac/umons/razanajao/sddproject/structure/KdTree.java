@@ -1,6 +1,7 @@
 package be.ac.umons.razanajao.sddproject.structure;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Describes a kD-tree. Here, it was designed to manage data in 2D.
@@ -73,34 +74,25 @@ public class KdTree<D> extends BSTree<D> {
 
     public ArrayList<Point> searchKdTreeY(KdTree<CoupleList> root, double c1, double c2) {
         ArrayList<Point> listing = new ArrayList<>();
-        if(root.getLeft().isEmpty() && root.getLeft().isEmpty()) {
+        if (root.isLeaf()) {
             Point p = root.getData().singlePoint();
-            p.inYankee(c1, c2);
-            listing.add(p);
-            return listing;
+            if (p.inYankee(c1, c2)) {
+                listing.add(p);
+            }
         } else {
             CoupleList current = root.getData();
-            current.split(root.height());
-            if(current.getFirstHalfY().getFirst().getY() >= c1 && current.getFirstHalfY().getLast().getY() <= c2) {
-                listing = root.getFromLeaf();
-                return listing;
-            } else {
-                if (!(current.getFirstHalfY().getFirst().getY() > c2 && current.getFirstHalfY().getLast().getY() < c1)) {
-                    return searchKdTreeY(root.getLeft(), c1, c2);
-                } else {
-                    if (current.getSecondHalfY().getFirst().getY() >= c1 && current.getSecondHalfY().getLast().getY() <= c2) {
-                        listing = root.getFromLeaf();
-                        return listing;
-                    } else {
-                        if (!(current.getSecondHalfY().getFirst().getY() > c2 && current.getSecondHalfY().getLast().getY() < c1)) {
-                            return searchKdTreeY(root.getRight(), c1, c2);
-                        } else {
-                            return listing;
-                        }
-                    }
-                }
+            if (current.getFirstPart().getYankee().getFirst().getY() >= c1 && current.getFirstPart().getYankee().getLast().getY() <= c2) { //line 4
+                listing.addAll(root.getLeft().getFromLeaf());
+            } else if (current.getFirstPart().getYankee().getLast().getY() >= c1 && current.getFirstPart().getYankee().getFirst().getY() <= c2) { //line 7
+                listing.addAll(searchKdTreeY(root.getLeft(), c1, c2));
+            }
+            if (current.getSecondPart().getYankee().getFirst().getY() >= c1 && current.getSecondPart().getYankee().getLast().getY() <= c2) { //line 10
+                listing.addAll(root.getRight().getFromLeaf());
+            } else if (current.getSecondPart().getYankee().getLast().getY() >= c1 && current.getSecondPart().getYankee().getFirst().getY() <= c2) { //line 13
+                listing.addAll(searchKdTreeY(root.getRight(), c1, c2));
             }
         }
+        return listing;
     }
 
 
@@ -126,10 +118,12 @@ public class KdTree<D> extends BSTree<D> {
         }else if(aly.size()==0){
             return alx;
         }else{
-            for(Point p : alx){
-                if(!aly.contains(p))
-                    alx.add(p);
+            for(Point p : new ArrayList<>(alx)) {
+                if(!aly.contains(p)) {
+                    alx.remove(p);
+                }
             }
+
             return alx;
         }
     }
