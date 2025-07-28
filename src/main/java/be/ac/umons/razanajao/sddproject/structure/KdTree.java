@@ -59,16 +59,12 @@ public class KdTree<D> extends BSTree<D> {
             CoupleList current = root.getData();
             if(current.getFirstPart().getXray().getFirst().getX() >= c1 && current.getFirstPart().getXray().getLast().getX() <= c2) { //line 4
                 listing.addAll(root.getLeft().getFromLeaf());
-            }else if((current.getFirstPart().getXray().getFirst().getX() <= c1 && current.getFirstPart().getXray().getLast().getX() <= c2) ||
-                   (current.getFirstPart().getXray().getFirst().getX() >= c1 && current.getFirstPart().getXray().getLast().getX() >= c2) ||
-                   (current.getFirstPart().getXray().getFirst().getX() <= c1 && current.getFirstPart().getXray().getLast().getX() >= c2)) { //line 7
+            }else if(current.getFirstPart().getXray().getLast().getX() >= c1 && current.getFirstPart().getXray().getFirst().getX() <= c2) { //line 7
                     listing.addAll(searchKdTreeX(root.getLeft(), c1, c2));
             }
             if(current.getSecondPart().getXray().getFirst().getX() >= c1 && current.getSecondPart().getXray().getLast().getX() <= c2) { //line 10
                 listing.addAll(root.getRight().getFromLeaf());
-            } else if((current.getSecondPart().getXray().getFirst().getX() <= c1 && current.getSecondPart().getXray().getLast().getX() <= c2) ||
-                    (current.getSecondPart().getXray().getFirst().getX() >= c1 && current.getSecondPart().getXray().getLast().getX() >= c2) ||
-                    (current.getSecondPart().getXray().getFirst().getX() <= c1 && current.getSecondPart().getXray().getLast().getX() >= c2)) { //line 13
+            } else if(current.getSecondPart().getXray().getLast().getX() >= c1 && current.getSecondPart().getXray().getFirst().getX() <= c2)  { //line 13
                 listing.addAll(searchKdTreeX(root.getRight(), c1, c2));
             }
         }
