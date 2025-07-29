@@ -52,7 +52,7 @@ public class InputMaster {
             switch (first){
                 case "SELECT":
                     if(input.trim().matches(REGEX_SELECTOR)){
-                        t.buildFromList(selectOne(input,desti,t,kdt));
+                        t.buildFromList(input.split("FROM")[0].trim(), selectOne(input,desti,t,kdt));
                     }else{
                         Hermes.red(first+" is invalid !");
                     }

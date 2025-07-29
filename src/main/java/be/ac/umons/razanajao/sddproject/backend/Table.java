@@ -5,6 +5,7 @@ import be.ac.umons.razanajao.sddproject.structure.CoupleList;
 import be.ac.umons.razanajao.sddproject.structure.Point;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -171,11 +172,30 @@ public class Table {
      *
      * @param al    The list of data to put in a Table.
      */
-    public void buildFromList(ArrayList<Point> al){
-        setHeader(new String[]{getHeader()[0],getHeader()[1],getHeader()[2]});
-        String[][] newData = new String[al.size()][3];
-        for(int i=0;i<al.size();i++){
-            newData[i] = new String[]{String.valueOf(al.get(i).getX()),String.valueOf(al.get(i).getY()),al.get(i).getInfo()};
+    public void buildFromList(String which, ArrayList<Point> al){
+
+        String[] col = which.split("\\s*SELECT\\s*|,|\\s");
+        String[][] newData;
+        System.out.print("Table 179 | col[0]="+col[0]);
+        if(!(col.length==3)){
+            if(col[1].equals(getHeader()[0])){
+                setHeader(new String[]{getHeader()[0],getHeader()[2]});
+                newData = new String[al.size()][2];
+                for(int i=0;i<al.size();i++){
+                    newData[i] = new String[]{String.valueOf(al.get(i).getX()),al.get(i).getInfo()};
+                }
+            }else{
+                setHeader(new String[]{getHeader()[1],getHeader()[2]});
+                newData = new String[al.size()][2];
+                for(int i=0;i<al.size();i++){
+                    newData[i] = new String[]{String.valueOf(al.get(i).getY()),al.get(i).getInfo()};
+                }
+            }
+        }else{
+            newData = new String[al.size()][3];
+            for(int i=0;i<al.size();i++){
+                newData[i] = new String[]{String.valueOf(al.get(i).getX()),String.valueOf(al.get(i).getY()),al.get(i).getInfo()};
+            }
         }
         setData(newData);
     }

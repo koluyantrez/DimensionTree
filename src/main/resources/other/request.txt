@@ -2,4 +2,4 @@ RENAME ytbgame.txt TO ytb.txt
 RENAME ytb.txt TO ytbgame.txt
 ADD 1674, 49.4, celine_dept IN ytbgame
 REMOVE 2 FROM yehede
-SELECT weight FROM for_test.txt WHERE height >= 1.71 AND weight >= 83.4
+SELECT weight FROM for_test.txt WHERE height >= 1.71
