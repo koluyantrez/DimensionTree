@@ -174,9 +174,8 @@ public class Table {
      */
     public void buildFromList(String which, ArrayList<Point> al){
 
-        String[] col = which.split("\\s*SELECT\\s*|,|\\s");
+        String[] col = which.split("\\s*SELECT\\s*|,\\s*|\\s");
         String[][] newData;
-        System.out.print("Table 179 | col[0]="+col[0]);
         if(!(col.length==3)){
             if(col[1].equals(getHeader()[0])){
                 setHeader(new String[]{getHeader()[0],getHeader()[2]});
