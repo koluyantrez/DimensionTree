@@ -179,4 +179,37 @@ public class KdTree<D> extends BSTree<D> {
             catcherPoint(node.getRight(), pointResult);
         }
     }
+
+
+    public void print(KdTree<CoupleList> node, int gap, int wide){
+        if(node.isEmpty())
+            return;
+
+        if(node.isLeaf()) {
+            for(int i=0;i<gap;i++){
+                System.out.print(" ");
+            }
+            System.out.print("("+gap/wide+") "+node.getData().singlePoint());
+        }else {
+            print(node.getRight(), gap+wide,wide);
+
+            System.out.println();
+            if(wide==14)
+                System.out.println();
+
+            for(int i=0;i<gap;i++){
+                System.out.print(" ");
+            }
+            if (node.height() % 2 == 0) {
+                System.out.print("("+gap/wide+") "+node.getData().getFirstHalfX().getLast().getInfo());
+            }else{
+                System.out.print("("+gap/wide+") "+node.getData().getFirstHalfY().getLast().getInfo());
+            }
+            System.out.println();
+            if(wide==14)
+                System.out.println();
+
+            print(node.getLeft(), gap+wide,wide);
+        }
+    }
 }

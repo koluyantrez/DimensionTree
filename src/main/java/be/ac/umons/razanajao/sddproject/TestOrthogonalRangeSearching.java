@@ -7,14 +7,17 @@ import be.ac.umons.razanajao.sddproject.backend.Table;
 import be.ac.umons.razanajao.sddproject.frontend.FrontGrid;
 import be.ac.umons.razanajao.sddproject.structure.CoupleList;
 import be.ac.umons.razanajao.sddproject.structure.KdTree;
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 import java.io.IOException;
@@ -46,6 +49,8 @@ public class TestOrthogonalRangeSearching extends Application {
 
     public static ArrayList<String> dataList = new ArrayList<>();
     public static String imp;
+    private static final int WIDE = 14;
+    private static final int NARROW = 6;
 
 
     /**
@@ -266,11 +271,25 @@ public class TestOrthogonalRangeSearching extends Application {
                 }
         );
 
-        displayTree.setOnAction(
-                e -> {
-                    kdt.print();
+
+        PauseTransition delay = new PauseTransition(Duration.millis(250));
+        delay.setOnFinished(e -> {
+            kdt.print(kdt,0,NARROW);
+        });
+
+        displayTree.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                if (event.getClickCount() == 1) {
+                    delay.playFromStart();
+                } else if (event.getClickCount() == 2) {
+                    delay.stop();
+                    kdt.print(kdt,0,WIDE);
                 }
-        );
+                for(int i=0;i<20;++i){
+                    System.out.println();
+                }
+            }
+        });
 
 
 
