@@ -41,3 +41,5 @@ Selecting => SELECT c1 FROM P WHERE condition1
 Let x and y be reals, a condition can be => c >= x
                                             c <= x
                                             c in [x,y]
+
+If you have a table with two columns, you cannot do some manipulation with this data.
