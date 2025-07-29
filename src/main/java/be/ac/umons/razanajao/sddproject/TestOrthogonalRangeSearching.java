@@ -275,6 +275,7 @@ public class TestOrthogonalRangeSearching extends Application {
         PauseTransition delay = new PauseTransition(Duration.millis(250));
         delay.setOnFinished(e -> {
             kdt.print(kdt,0,NARROW);
+            //kdt.print();
         });
 
         displayTree.setOnMouseClicked(event -> {
