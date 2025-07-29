@@ -170,6 +170,7 @@ public class Table {
     /**
      * It builds a Table by an ArrayList of Point.
      *
+     * @param which The part of the input before "FROM".
      * @param al    The list of data to put in a Table.
      */
     public void buildFromList(String which, ArrayList<Point> al){
