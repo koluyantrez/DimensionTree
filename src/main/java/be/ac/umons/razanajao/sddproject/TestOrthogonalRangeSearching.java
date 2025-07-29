@@ -29,7 +29,7 @@ public class TestOrthogonalRangeSearching extends Application {
     KdTree<CoupleList> kdt = new KdTree<>();
     CoupleList cl;
 
-    private final TextField inputUser = new TextField("SELECT weight FROM for_test.txt WHERE weight in [70,100]");
+    private final TextField inputUser = new TextField();
     private final TextField newFileName = new TextField("Name your file.txt");
     private final Button importFile = new Button("Import your file");
     private final Button killer = new Button("Remove this file");
