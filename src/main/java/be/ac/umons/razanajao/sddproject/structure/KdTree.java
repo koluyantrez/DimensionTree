@@ -133,7 +133,7 @@ public class KdTree<D> extends BSTree<D> {
 
 
         if(alx.size()==0 && aly.size()==0){
-            aly.add(new Point(0,0,NOTHING));
+            alx.add(new Point(Double.NEGATIVE_INFINITY,Double.POSITIVE_INFINITY,NOTHING));
             return aly;
         }
 
@@ -147,7 +147,9 @@ public class KdTree<D> extends BSTree<D> {
                     alx.remove(p);
                 }
             }
-
+            if(alx.size()==0){
+                alx.add(new Point(Double.NEGATIVE_INFINITY,Double.POSITIVE_INFINITY,NOTHING));
+            }
             return alx;
         }
     }

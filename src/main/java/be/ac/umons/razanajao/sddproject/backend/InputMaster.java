@@ -156,7 +156,7 @@ public class InputMaster {
      */
     public static ArrayList<Point> selectOne(String input, String target, Table t, KdTree<CoupleList> kdt){
         String[] parser = input.split("[,\\s\\[\\]]+");
-        String desti = "";
+        String desti;
         if(t.contains(parser[1])) {
             if(parser[3].equals("FROM")) {
                 if(t.contains(parser[2])) {

@@ -5,12 +5,16 @@ import be.ac.umons.razanajao.sddproject.backend.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Amatest {
     Point p1,p2,p3;
     String someInfo = "";
     Table t;
+    KdTree<CoupleList> kdt = new KdTree<>();
+    CoupleList cl;
 
     @BeforeEach
     void setUp() {
@@ -19,6 +23,8 @@ public class Amatest {
         p3 = new Point(0.25, 74.487,someInfo);
 
         t = FileMaster.createTable("for_test.txt");
+        cl=t.giveDataset();
+        kdt = kdt.buildKdTree(cl,0);
     }
 
 
@@ -44,24 +50,24 @@ public class Amatest {
 
     @Test
     void allDataFromTableInAinaList(){
-        CoupleList al = t.giveDataset();
-        assertTrue(al.size()==t.getX());
+        CoupleList cl= t.giveDataset();
+        assertTrue(cl.size()==t.getX());
     }
 
     @Test
     void checkOrderData(){
-        CoupleList al = t.giveDataset();
+        CoupleList cl= t.giveDataset();
 
         boolean okX = true;
         boolean okY = true;
 
 
-        for (int i=0;i<al.size()-1;i++) {
-            if(al.getXray().get(i).compareToX(al.getXray().get(i+1))>0) {
+        for (int i=0;i<cl.size()-1;i++) {
+            if(cl.getXray().get(i).compareToX(cl.getXray().get(i+1))>0) {
                 okX = false;
                 break;
             }
-            if(al.getYankee().get(i).compareToY(al.getYankee().get(i+1))>0) {
+            if(cl.getYankee().get(i).compareToY(cl.getYankee().get(i+1))>0) {
                 okY = false;
                 break;
             }
@@ -73,16 +79,16 @@ public class Amatest {
 
     @Test
     void checkSizeAfterSplit(){
-        CoupleList al = t.giveDataset();
-        al.split(420);
-        assertTrue(al.getFirstHalfY().size()==10);
+        CoupleList cl= t.giveDataset();
+       cl.split(420);
+        assertTrue(cl.getFirstHalfY().size()==10);
     }
 
     @Test
     void checkAllPointInFirstPart(){
-        CoupleList al = t.giveDataset();
-        al.split(98);
-        CoupleList firstPart = al.getFirstPart();
+        CoupleList cl= t.giveDataset();
+       cl.split(98);
+        CoupleList firstPart =cl.getFirstPart();
 
 
         boolean answer1 = true;
@@ -104,9 +110,9 @@ public class Amatest {
 
     @Test
     void checkAllPointInSecondPart() {
-        CoupleList al = t.giveDataset();
-        al.split(141);
-        CoupleList secondPart = al.getSecondPart();
+        CoupleList cl= t.giveDataset();
+       cl.split(141);
+        CoupleList secondPart =cl.getSecondPart();
 
         boolean answer1 = true;
         for(Point p : secondPart.getXray()){
@@ -122,7 +128,6 @@ public class Amatest {
                 break;
             }
         }
-        al.display();
         assertTrue(answer1 && answer2);
     }
 
@@ -149,7 +154,24 @@ public class Amatest {
         assertFalse(f2.trim().matches(REGEX_SELECTOR));
         assertFalse(f3.trim().matches(REGEX_SELECTOR));
         assertTrue(t3.trim().matches(REGEX_SELECTOR));
-
     }
+    
+    /*@Test
+    void checkSearchZero(){
+        String input = "height >= 1.71 AND weight >= 83.4";
+        ArrayList<Point> zero = InputMaster.selectTwo(input,t,kdt);
+        assertTrue(zero.size()==0);
+    }*/
+
+   /* @Test
+    void checkSearchResult(){
+        String input1 = "weight >= 100";
+        ArrayList<Point> twee = InputMaster.selectTwo(input1,t,kdt);
+        assertTrue(twee.size()==2);
+
+        String input2 = "weight >= 100 AND height in [1.55,1.7]";
+        ArrayList<Point> een = InputMaster.selectTwo(input2,t,kdt);
+        assertTrue(een.size()==1);
+    }*/
 
 }
