@@ -5,7 +5,8 @@ import be.ac.umons.razanajao.sddproject.structure.CoupleList;
 import be.ac.umons.razanajao.sddproject.structure.Point;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 
 /**
@@ -105,10 +106,9 @@ public class Table {
      * @param number    The index of the rows with the data that the user want to remove.
      * @param cl        The CoupleList linked to the table.
      */
-    public void remove(double number, CoupleList cl){
+    public void remove(int number, CoupleList cl){
         if(number>this.getX()){
-            Hermes.green("The index must be lower than "+this.getX());
-            return;
+            Hermes.red("The index must be lower than "+this.getX());
         }else{
             int newX = this.x-1;
             String[][] update = new String[newX][this.y];
@@ -134,7 +134,6 @@ public class Table {
             setX(newX);
         }
     }
-
 
     /**
      * This method initializes a CoupleList with the current content.

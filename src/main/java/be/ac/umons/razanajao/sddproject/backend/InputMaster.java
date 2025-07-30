@@ -136,11 +136,12 @@ public class InputMaster {
             String desti = input.split("FROM")[1].trim();
             desti=extension(desti);
             if(desti.equals(target)){
-                t.remove(Double.parseDouble(parser[1]),cl);
+                t.remove(Integer.parseInt(parser[1]),cl);
             }else{
                 Hermes.red("The file " + desti + " does not exist");
             }
         } catch (NumberFormatException e) {
+            e.printStackTrace();
             Hermes.red("Syntax error : number");
         }
     }
