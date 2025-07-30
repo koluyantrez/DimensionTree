@@ -132,6 +132,13 @@ public class Amatest {
     }
 
     @Test
+    void deletation(){
+        int start = cl.size();
+        cl.remove(new Point(70, 1.65, "xev"));
+        assertTrue(cl.size()==start-1);
+    }
+
+    @Test
     void checkSelectSyntax(){
         String NAME = "[a-zA-Z0-9_\\.]+";
         String NUMBER = "-?\\d+(\\.\\d+)?";

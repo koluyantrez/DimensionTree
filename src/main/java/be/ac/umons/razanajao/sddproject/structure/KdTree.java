@@ -38,7 +38,7 @@ public class KdTree<D> extends BSTree<D> {
      * @return A KdTree with the data contained in the CoupleList given.
      */
     public KdTree buildKdTree(CoupleList cl, int depth) {
-        if (cl.size() == 1) {
+        if (cl.size() <= 1) {
             return new KdTree(cl, new KdTree(), new KdTree());
         } else {
             cl.split(depth);
@@ -114,22 +114,21 @@ public class KdTree<D> extends BSTree<D> {
     /**
      * It searches all points in its leaves such as they are in the interval [x1;x2] and [y1;y2]
      *
-     * @param kdt   The KdTree(root) that we want to do some research.
      * @param a1    The shorter value to compare according to x-coordinate.
      * @param a2    The greater value to compare according to x-coordinate.
      * @param b1    The shorter value to compare according to y-coordinate.
      * @param b2    The greater value to compare according to y-coordinate.
      * @return      A resulting ArrayList from the merger between "searchKdTreeY" and "searchKdTreeX".
      */
-    public ArrayList<Point> searchKdTree(KdTree<CoupleList> kdt,double a1,double a2,double b1,double b2) {
+    public ArrayList<Point> searchKdTree(double a1,double a2,double b1,double b2) {
         ArrayList<Point> alx = new ArrayList<>();
         ArrayList<Point> aly = new ArrayList<>();
         if(a1!=0 || a2!=0) {
-            alx = searchKdTreeX(kdt, a1, a2);
+            alx = searchKdTreeX((KdTree<CoupleList>)this, a1, a2);
         }
 
         if(b1!=0 || b2!=0)
-            aly = searchKdTreeY(kdt,b1,b2);
+            aly = searchKdTreeY((KdTree<CoupleList>)this,b1,b2);
 
 
         if(alx.size()==0 && aly.size()==0){

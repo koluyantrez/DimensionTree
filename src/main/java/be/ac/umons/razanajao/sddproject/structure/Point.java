@@ -86,11 +86,18 @@ public class Point{
     /**
      *  Make x-coordinate and y-coordinate comparaison with the given point following the accuracy.
      *
-     * @param p The point to compare with.
+     * @param o The point to compare with.
      * @return  True if they are same coordinate according to a certain precision.
      */
-    public boolean equals(Point p){
+    @Override
+    public boolean equals(Object o) {
+        if(this==o)
+            return true;
+        if(!(o instanceof Point))
+            return false;
+        Point p = (Point) o;
         return equalsX(p) && equalsY(p);
+
     }
 
     /**

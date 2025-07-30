@@ -228,6 +228,6 @@ public class InputMaster {
                 Hermes.red("Check the spelling 3");
             }
         }
-        return kdt.searchKdTree(kdt,compare[0],compare[1],compare[2],compare[3]);
+        return kdt.searchKdTree(compare[0],compare[1],compare[2],compare[3]);
     }
 }

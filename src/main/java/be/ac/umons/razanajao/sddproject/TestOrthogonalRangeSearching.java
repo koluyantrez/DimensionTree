@@ -237,7 +237,6 @@ public class TestOrthogonalRangeSearching extends Application {
                     sp.setContent(gp);
                     greenCode(data.getValue()+" is displayed as a table");
                     cl = t.giveDataset();
-                    kdt = kdt.buildKdTree(cl,0);
                 }
         );
 
@@ -275,10 +274,10 @@ public class TestOrthogonalRangeSearching extends Application {
         PauseTransition delay = new PauseTransition(Duration.millis(250));
         delay.setOnFinished(e -> {
             kdt.print(kdt,0,NARROW);
-            //kdt.print();
         });
 
         displayTree.setOnMouseClicked(event -> {
+            kdt = new KdTree<>().buildKdTree(cl,0);
             if (event.getButton() == MouseButton.PRIMARY) {
                 if (event.getClickCount() == 1) {
                     delay.playFromStart();

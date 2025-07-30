@@ -46,15 +46,11 @@ public class CoupleList {
      * @param depth     The current depth.
      */
     public void split(int depth){
-        if(secondHalfY!=null){
-            return;
-        }
-        if(size()==1){
+        if(size()<=1){
             return;
         }
 
         int valSplit = (int) Math.ceil(xray.size()/2.0);
-
 
         if(depth%2==1) {
             firstHalfY = new ArrayList<>(yankee.subList(0, valSplit));
