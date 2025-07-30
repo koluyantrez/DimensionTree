@@ -237,6 +237,7 @@ public class TestOrthogonalRangeSearching extends Application {
                     sp.setContent(gp);
                     greenCode(data.getValue()+" is displayed as a table");
                     cl = t.giveDataset();
+                    kdt = new KdTree<>().buildKdTree(cl,0);
                 }
         );
 
@@ -252,6 +253,7 @@ public class TestOrthogonalRangeSearching extends Application {
                             data.setItems(FXCollections.observableArrayList(dataList));
                             data.getSelectionModel().selectFirst();
                         }
+                        kdt = new KdTree<>().buildKdTree(cl,0);
                         gp = FrontGrid.onGridPane(t);
                         gp.setHgap(80);
                         gp.setVgap(100);

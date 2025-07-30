@@ -58,7 +58,7 @@ public class KdTree<D> extends BSTree<D> {
      */
     public ArrayList<Point> searchKdTreeX(KdTree<CoupleList> node, double c1, double c2) {
         ArrayList<Point> listing = new ArrayList<>();
-        if (node.isLeaf()) {
+        if(node.isLeaf()) {
             Point p = node.getData().singlePoint();
             if(p.inXray(c1, c2)) {
                 listing.add(p);
