@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 public class KdTree<D> extends BSTree<D> {
 
-    private final String NOTHING = "NONE";
-
     public KdTree() {
         super();
     }
@@ -48,112 +46,58 @@ public class KdTree<D> extends BSTree<D> {
         }
     }
 
-
-
-/**
-     * This method gives an ArrayList with all points satisfying the request following to x-coordinate.
+    /**
+     * It gives an ArrayList with all points satisfying the request.
      *
-     * @param node  The current position in the KdTree.
-     * @param c1    The shorter value to compare according to x-coordinate.
-     * @param c2    The greater value to compare according to x-coordinate.
-     * @return      An ArrayList with all points satisfying the request following to x-coordinate.
+     * @param node  The start of the research.
+     * @param x1    The lower bound of x-coordinate
+     * @param a2    The lower bound of y-coordinate
+     * @param y1    The lower bound of y-coordinate
+     * @param b2    The higher bound of y-coordinate
+     * @return      An ArrayList with all points satisfying the request. Here, it may be empty.
      */
-
-    public ArrayList<Point> searchKdTreeX(KdTree<CoupleList> node, double c1, double c2) {
-        ArrayList<Point> listing = new ArrayList<>();
-        if(node.isLeaf()) {
-            Point p = node.getData().singlePoint();
-            if(p.inXray(c1, c2)) {
-                listing.add(p);
-            }
-        } else {
-            CoupleList current = node.getData();
-            if(current.getFirstPart().getXray().getFirst().getX() >= c1 && current.getFirstPart().getXray().getLast().getX() <= c2) { //line 4
-                listing.addAll(node.getLeft().getFromLeaf());
-            }else if(current.getFirstPart().getXray().getLast().getX() >= c1 && current.getFirstPart().getXray().getFirst().getX() <= c2) { //line 7
-                    listing.addAll(searchKdTreeX(node.getLeft(), c1, c2));
-            }
-            if(current.getSecondPart().getXray().getFirst().getX() >= c1 && current.getSecondPart().getXray().getLast().getX() <= c2) { //line 10
-                listing.addAll(node.getRight().getFromLeaf());
-            } else if(current.getSecondPart().getXray().getLast().getX() >= c1 && current.getSecondPart().getXray().getFirst().getX() <= c2)  { //line 13
-                listing.addAll(searchKdTreeX(node.getRight(), c1, c2));
-            }
-        }
-        return listing;
-    }
-
-/**
-     * This method gives an ArrayList with all points satisfying the request following to y-coordinate.
-     *
-     * @param node  The current position in the KdTree.
-     * @param c1    The shorter value to compare according to y-coordinate.
-     * @param c2    The greater value to compare according to y-coordinate.
-     * @return      An ArrayList with all points satisfying the request following to y-coordinate.
-     */
-    public ArrayList<Point> searchKdTreeY(KdTree<CoupleList> node, double c1, double c2) {
+    public ArrayList<Point> searchKdTree(KdTree<CoupleList> node,double x1,double a2,double y1,double b2) {
         ArrayList<Point> listing = new ArrayList<>();
         if (node.isLeaf()) {
             Point p = node.getData().singlePoint();
-            if (p.inYankee(c1, c2)) {
+            if (p.inYankee(y1, b2) && p.inXray(x1, a2)) {
                 listing.add(p);
             }
-        } else {
+        }else{
             CoupleList current = node.getData();
-            if (current.getFirstPart().getYankee().getFirst().getY() >= c1 && current.getFirstPart().getYankee().getLast().getY() <= c2) { //line 4
+            boolean leftCompletelyIn = current.getFirstPart().getXray().getFirst().getX() >= x1 &&
+                                       current.getFirstPart().getXray().getLast().getX() <= a2 &&
+                                       current.getFirstPart().getYankee().getFirst().getY() >= y1 &&
+                                       current.getFirstPart().getYankee().getLast().getY() <= b2;
+
+            boolean leftPartiallyIn = current.getFirstPart().getXray().getLast().getX() >= x1 &&
+                                      current.getFirstPart().getXray().getFirst().getX() <= a2 &&
+                                      current.getFirstPart().getYankee().getLast().getY() >= y1 &&
+                                      current.getFirstPart().getYankee().getFirst().getY() <= b2;
+
+            if(leftCompletelyIn){
                 listing.addAll(node.getLeft().getFromLeaf());
-            } else if (current.getFirstPart().getYankee().getLast().getY() >= c1 && current.getFirstPart().getYankee().getFirst().getY() <= c2) { //line 7
-                listing.addAll(searchKdTreeY(node.getLeft(), c1, c2));
+            }else if(leftPartiallyIn) {
+                listing.addAll(searchKdTree(node.getLeft(), x1, a2, y1, b2));
             }
-            if (current.getSecondPart().getYankee().getFirst().getY() >= c1 && current.getSecondPart().getYankee().getLast().getY() <= c2) { //line 10
+
+            boolean rightCompletelyIn = current.getSecondPart().getXray().getFirst().getX() >= x1 &&
+                                        current.getSecondPart().getXray().getLast().getX() <= a2 &&
+                                        current.getSecondPart().getYankee().getFirst().getY() >= y1 &&
+                                        current.getSecondPart().getYankee().getLast().getY() <= b2;
+
+            boolean rightPartiallyIn = current.getFirstPart().getXray().getLast().getX() >= x1 &&
+                                       current.getSecondPart().getXray().getFirst().getX() <= a2 &&
+                                       current.getSecondPart().getYankee().getLast().getY() >= y1 &&
+                                       current.getSecondPart().getYankee().getFirst().getY() <= b2;
+
+            if(rightCompletelyIn){
                 listing.addAll(node.getRight().getFromLeaf());
-            } else if (current.getSecondPart().getYankee().getLast().getY() >= c1 && current.getSecondPart().getYankee().getFirst().getY() <= c2) { //line 13
-                listing.addAll(searchKdTreeY(node.getRight(), c1, c2));
+            }else if(rightPartiallyIn) {
+                listing.addAll(searchKdTree(node.getRight(), x1, a2, y1, b2));
             }
         }
         return listing;
-    }
-
-
-/**
-     * It searches all points in its leaves such as they are in the interval [x1;x2] and [y1;y2]
-     *
-     * @param a1    The shorter value to compare according to x-coordinate.
-     * @param a2    The greater value to compare according to x-coordinate.
-     * @param b1    The shorter value to compare according to y-coordinate.
-     * @param b2    The greater value to compare according to y-coordinate.
-     * @return      A resulting ArrayList from the merger between "searchKdTreeY" and "searchKdTreeX".
-     */
-    public ArrayList<Point> searchKdTree(double a1,double a2,double b1,double b2) {
-        ArrayList<Point> alx = new ArrayList<>();
-        ArrayList<Point> aly = new ArrayList<>();
-        if(a1!=0 || a2!=0) {
-            alx = searchKdTreeX((KdTree<CoupleList>)this, a1, a2);
-        }
-
-        if(b1!=0 || b2!=0)
-            aly = searchKdTreeY((KdTree<CoupleList>)this,b1,b2);
-
-
-        if(alx.size()==0 && aly.size()==0){
-            alx.add(new Point(Double.NEGATIVE_INFINITY,Double.POSITIVE_INFINITY,NOTHING));
-            return aly;
-        }
-
-        if(alx.size()==0){
-            return aly;
-        }else if(aly.size()==0){
-            return alx;
-        }else{
-            for(Point p : new ArrayList<>(alx)) {
-                if(!aly.contains(p)) {
-                    alx.remove(p);
-                }
-            }
-            if(alx.size()==0){
-                alx.add(new Point(Double.NEGATIVE_INFINITY,Double.POSITIVE_INFINITY,NOTHING));
-            }
-            return alx;
-        }
     }
 
     /**

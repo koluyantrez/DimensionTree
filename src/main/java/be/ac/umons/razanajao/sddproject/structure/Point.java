@@ -9,6 +9,7 @@ public class Point{
     private double x,y;
     private String info;
     private final double ACCURACY = 10e-4;
+    private final String NOTHING = "NONE";
 
     /**
      * Initializes a point with the given x-coordinate and y-coordinate
@@ -21,6 +22,12 @@ public class Point{
         this.x=x;
         this.y=y;
         this.info=info;
+    }
+
+    public Point(){
+        this.x=Double.NEGATIVE_INFINITY;
+        this.y=Double.POSITIVE_INFINITY;
+        this.info=NOTHING;
     }
 
     /**
