@@ -42,7 +42,7 @@ public class InputMaster {
      * @param t         The current table according to the file "desti".
      * @param cl        The CoupleList according to the table "t".
      * @param kdt       The Kd-Tree according to the file "desti".
-     * @return          True if the request is valid.
+     * @return          True it needs to do some change on the frontend
      */
     public static boolean fireWall(String input, String desti, Table t,CoupleList cl, KdTree<CoupleList> kdt){
         boolean touch = false;
@@ -191,7 +191,7 @@ public class InputMaster {
      */
     public static ArrayList<Point> selectTwo(String afterWhere, Table t, KdTree<CoupleList> kdt){
         String[] allCond = afterWhere.split("\\s+AND\\s+");
-        double[] compare = new double[4];
+        double[] compare = new double[]{Double.NEGATIVE_INFINITY,Double.POSITIVE_INFINITY,Double.NEGATIVE_INFINITY,Double.POSITIVE_INFINITY};
         for(String c : allCond){
             String[] parser = c.split("[,\\s\\[\\]]+");
             if(parser[0].equals(t.getHeader()[0])){
@@ -228,6 +228,9 @@ public class InputMaster {
                 Hermes.red("Check the spelling 3");
             }
         }
-        return kdt.searchKdTree(compare[0],compare[1],compare[2],compare[3]);
+        ArrayList<Point> al = kdt.searchKdTree(kdt,compare[0],compare[1],compare[2],compare[3]);
+        if(al.isEmpty())
+            al.add(new Point());
+        return al;
     }
 }
