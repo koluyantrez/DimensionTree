@@ -248,12 +248,12 @@ public class TestOrthogonalRangeSearching extends Application {
         inputUser.setOnKeyPressed(
                 e -> {
                     if(e.getCode() == KeyCode.ENTER){
+                        t = FileMaster.createTable(data.getValue().toString());
                         if(InputMaster.fireWall(inputUser.getText(), data.getValue().toString(),t,cl,kdt)) {
                             dataList = FileMaster.initDefault();
                             data.setItems(FXCollections.observableArrayList(dataList));
                             data.getSelectionModel().selectFirst();
                         }
-                        kdt = new KdTree<>().buildKdTree(cl,0);
                         gp = FrontGrid.onGridPane(t);
                         gp.setHgap(80);
                         gp.setVgap(100);

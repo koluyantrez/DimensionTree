@@ -48,7 +48,9 @@ public class KdTree<D> extends BSTree<D> {
         }
     }
 
-    /**
+
+
+/**
      * This method gives an ArrayList with all points satisfying the request following to x-coordinate.
      *
      * @param node  The current position in the KdTree.
@@ -56,6 +58,7 @@ public class KdTree<D> extends BSTree<D> {
      * @param c2    The greater value to compare according to x-coordinate.
      * @return      An ArrayList with all points satisfying the request following to x-coordinate.
      */
+
     public ArrayList<Point> searchKdTreeX(KdTree<CoupleList> node, double c1, double c2) {
         ArrayList<Point> listing = new ArrayList<>();
         if(node.isLeaf()) {
@@ -79,7 +82,7 @@ public class KdTree<D> extends BSTree<D> {
         return listing;
     }
 
-    /**
+/**
      * This method gives an ArrayList with all points satisfying the request following to y-coordinate.
      *
      * @param node  The current position in the KdTree.
@@ -111,7 +114,7 @@ public class KdTree<D> extends BSTree<D> {
     }
 
 
-    /**
+/**
      * It searches all points in its leaves such as they are in the interval [x1;x2] and [y1;y2]
      *
      * @param a1    The shorter value to compare according to x-coordinate.
