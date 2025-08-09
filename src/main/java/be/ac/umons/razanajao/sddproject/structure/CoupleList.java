@@ -1,6 +1,8 @@
 package be.ac.umons.razanajao.sddproject.structure;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -25,10 +27,11 @@ public class CoupleList {
      * @param xray      ArrayList of Point sorted by x-coordinate.
      * @param yankee    ArrayList of Point sorted by y-coordinate.
      */
-    public CoupleList(ArrayList<Point> xray, ArrayList<Point> yankee){
+    public CoupleList(ArrayList<Point> xray, ArrayList<Point> yankee, boolean needSorted){
         this.xray=xray;
         this.yankee=yankee;
-        sort();
+        if(needSorted)
+            sort();
     }
 
     /**
@@ -57,8 +60,9 @@ public class CoupleList {
             secondHalfY = new ArrayList<>(yankee.subList(valSplit, size()));
             firstHalfX = new ArrayList<>();
             secondHalfX = new ArrayList<>();
+            Set<Point> setFirstHalfY = new HashSet<>(firstHalfY);
             for (Point p : xray) {
-                if (firstHalfY.contains(p)) {
+                if (setFirstHalfY.contains(p)) {
                     firstHalfX.add(p);
                 } else {
                     secondHalfX.add(p);
@@ -69,16 +73,17 @@ public class CoupleList {
             secondHalfX = new ArrayList<>(xray.subList(valSplit, size()));
             firstHalfY = new ArrayList<>();
             secondHalfY = new ArrayList<>();
+            Set<Point> setFirstHalfX = new HashSet<>(firstHalfX);
             for (Point p : yankee) {
-                if (firstHalfX.contains(p)) {
+                if (setFirstHalfX.contains(p)) {
                     firstHalfY.add(p);
                 } else {
                     secondHalfY.add(p);
                 }
             }
         }
-        fi = new CoupleList(firstHalfX,firstHalfY);
-        se = new CoupleList(secondHalfX,secondHalfY);
+        fi = new CoupleList(firstHalfX,firstHalfY,false);
+        se = new CoupleList(secondHalfX,secondHalfY,false);
     }
 
     /**

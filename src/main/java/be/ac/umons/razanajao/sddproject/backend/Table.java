@@ -149,7 +149,7 @@ public class Table {
             xavi.add(recruiter);
             yamal.add(recruiter);
         }
-        return new CoupleList(xavi,yamal);
+        return new CoupleList(xavi,yamal,true);
     }
 
     /**
