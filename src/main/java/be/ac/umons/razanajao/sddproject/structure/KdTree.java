@@ -97,7 +97,6 @@ public class KdTree<D> extends BSTree<D> {
                 listing.addAll(searchKdTree(node.getRight(), x1, x2, y1, y2));
             }
         }
-        System.out.println("KdT 101 | "+listing.size());
         return listing;
     }
 
