@@ -237,6 +237,7 @@ public class TestOrthogonalRangeSearching extends Application {
                     sp.setContent(gp);
                     greenCode(data.getValue()+" is displayed as a table");
                     cl = t.giveDataset();
+
                     kdt = new KdTree<>().buildKdTree(cl,0);
                 }
         );

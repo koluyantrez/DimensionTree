@@ -86,7 +86,7 @@ public class KdTree<D> extends BSTree<D> {
                                         current.getSecondPart().getYankee().getFirst().getY() >= y1 &&
                                         current.getSecondPart().getYankee().getLast().getY() <= y2;
 
-            boolean rightPartiallyIn = current.getFirstPart().getXray().getLast().getX() >= x1 &&
+            boolean rightPartiallyIn = current.getSecondPart().getXray().getLast().getX() >= x1 &&
                                        current.getSecondPart().getXray().getFirst().getX() <= x2 &&
                                        current.getSecondPart().getYankee().getLast().getY() >= y1 &&
                                        current.getSecondPart().getYankee().getFirst().getY() <= y2;
@@ -97,6 +97,7 @@ public class KdTree<D> extends BSTree<D> {
                 listing.addAll(searchKdTree(node.getRight(), x1, x2, y1, y2));
             }
         }
+        System.out.println("KdT 101 | "+listing.size());
         return listing;
     }
 
