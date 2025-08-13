@@ -83,11 +83,11 @@ public class TestOrthogonalRangeSearching extends Application {
         Button back = new Button("←");
         Label label = new Label();
         label.setWrapText(true);
-        label.setMaxWidth(1300);  // pour éviter un affichage trop large
+        label.setMaxWidth(1300);
 
-        FileMaster.toHelp(label);  // charge le texte
+        FileMaster.toHelp(label);
 
-        // ScrollPane pour le texte
+
         ScrollPane scrollPane = new ScrollPane(label);
         scrollPane.setPrefSize(1400, 800);
         scrollPane.setLayoutX(50);

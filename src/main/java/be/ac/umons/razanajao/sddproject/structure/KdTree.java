@@ -18,7 +18,7 @@ public class KdTree<D> extends BSTree<D> {
         super(d, l, r);
     }
 
-    // Redefine to avoid constant casting
+
     public KdTree<D> getLeft() {
         return (KdTree<D>) super.getLeft();
     }
